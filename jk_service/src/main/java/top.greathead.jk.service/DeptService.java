@@ -9,4 +9,12 @@ public interface DeptService {
     Pagination findByPage(Pagination page);
 
     List<Dept> findAll();
+
+    void insert(Dept model);
+
+    Dept findById(String id);
+
+    void update(Dept model);
+
+    void delete(String[] ids);
 }

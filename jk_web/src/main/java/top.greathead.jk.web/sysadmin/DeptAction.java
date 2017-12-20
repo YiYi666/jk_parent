@@ -1,5 +1,6 @@
 package top.greathead.jk.web.sysadmin;
 
+import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import top.greathead.jk.entity.Dept;
@@ -14,17 +15,19 @@ import java.util.List;
  * @date 2017/12/20
  */
 @Controller("deptAction")
-public class DeptAction extends BaseAction {
+public class DeptAction extends BaseAction implements ModelDriven<Dept>{
 
     private Pagination page = new Pagination();
 
     @Autowired
-   private DeptService deptService;
+    private DeptService deptService;
 
     private List<Dept> deptList;
 
-    public String insert(){
+    private Dept model = new Dept();
 
+    public String insert(){
+        deptService.insert(model);
         return "rlist";
     }
 
@@ -39,6 +42,27 @@ public class DeptAction extends BaseAction {
         deptList = deptService.findAll();
         return "tocreate";
     }
+    public String toupdate(){
+        deptList = deptService.findAll();
+        model = deptService.findById(model.getId());
+        deptList.remove(model);
+        push(model);
+        return "toupdate";
+    }
+    public String update(){
+        deptService.update(model);
+        return "rlist";
+    }
+
+    public String delete(){
+        deptService.delete(model.getId().split(", "));
+        return "rlist";
+    }
+    public String toview(){
+        model = deptService.findById(model.getId());
+        push(model);
+        return "toview";
+    }
 
     public Pagination getPage() {
         return page;
@@ -50,5 +74,10 @@ public class DeptAction extends BaseAction {
 
     public List<Dept> getDeptList() {
         return deptList;
+    }
+
+    @Override
+    public Dept getModel() {
+        return model;
     }
 }

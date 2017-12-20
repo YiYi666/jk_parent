@@ -15,7 +15,7 @@ import java.util.List;
 public class DeptServiceImpl implements DeptService {
 
     @Autowired
-    private BaseDao deptDao;
+    private BaseDao<Dept,String> deptDao;
     @Override
     @Transactional(readOnly = true)
     public Pagination findByPage(Pagination page) {
@@ -26,5 +26,28 @@ public class DeptServiceImpl implements DeptService {
     @Transactional(readOnly = true)
     public List<Dept> findAll() {
         return deptDao.getListByHQL("from Dept");
+    }
+
+    @Override
+    public void insert(Dept model) {
+        deptDao.save(model);
+    }
+
+    @Override
+    public void update(Dept model) {
+        deptDao.update(model);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Dept findById(String id) {
+        return deptDao.get(Dept.class,id);
+    }
+
+    @Override
+    public void delete(String[] ids) {
+        for (String id : ids) {
+            deptDao.deleteById(Dept.class,id);
+        }
     }
 }
