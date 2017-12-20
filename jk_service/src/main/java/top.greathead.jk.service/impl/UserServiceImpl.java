@@ -7,18 +7,16 @@ import top.greathead.jk.dao.BaseDao;
 import top.greathead.jk.entity.User;
 import top.greathead.jk.service.UserService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Service
-
+@Service("UserService")
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private BaseDao baseDao;
+    private BaseDao<User,String> baseDao;
 
-    @Transactional
     @Override
+    @Transactional
     public List<User> findlist() {
         List<User> list = baseDao.getListByHQL("from User");
         return list;

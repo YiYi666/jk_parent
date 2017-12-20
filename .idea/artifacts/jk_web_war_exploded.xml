@@ -11,6 +11,9 @@
           <element id="library" level="project" name="Maven: top.greathead:jk_utils:1.0-SNAPSHOT" />
           <element id="library" level="project" name="Maven: top.greathead:jk_dao:1.0-SNAPSHOT" />
           <element id="library" level="project" name="Maven: top.greathead:jk_entity:1.0-SNAPSHOT" />
+          <element id="archive" name="service-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="jk_service" />
+          </element>
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.4" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />

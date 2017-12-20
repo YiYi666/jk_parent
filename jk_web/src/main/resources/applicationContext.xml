@@ -45,7 +45,7 @@
         <!-- 配置引入映射文件 -->
         <property name="mappingLocations">
             <list>
-                <value>classpath:hbm/*.hbm.xml</value>
+                <value>classpath:hbm/Dept.hbm.xml</value>
             </list>
         </property>
 

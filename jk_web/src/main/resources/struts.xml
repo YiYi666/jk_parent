@@ -14,9 +14,23 @@
     <constant name="struts.multipart.maxSize" value="86170804"/>
 
     <package name="default" namespace="/" extends="struts-default">
-            <action name="user" class="userAction">
-                <result name="list">/list.jsp</result>
-            </action>
+        <!--<action name="user" class="userAction">
+            <result name="list">/list.jsp</result>
+        </action>-->
+        <action name="login" class="loginAction" method="login">
+            <result name="login">/WEB-INF/pages/sysadmin/login/login.jsp</result>
+            <result name="success">/WEB-INF/pages/home/fmain.jsp</result>
+        </action>
+
+        <action name="homeAction_*" class="homeAction" method="{1}">
+            <result name="fmain">/WEB-INF/pages/home/fmain.jsp</result>
+            <result name="title">/WEB-INF/pages/home/title.jsp</result>
+            <result name="toleft">/WEB-INF/pages/${moduleName}/left.jsp</result>
+            <result name="tomain">/WEB-INF/pages/${moduleName}/main.jsp</result>
+        </action>
+
     </package>
+
+    <include file="struts/struts_sysadmin.xml"/>
 
 </struts>
