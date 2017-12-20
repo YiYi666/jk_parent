@@ -33,7 +33,7 @@
 	        <tr>
 	            <td class="columnTitle">上级部门：</td>
 	            <td class="tableContent">
-	            	<s:select name="parent.id" list="#deptList" headerKey="" headerValue="--请选择--" listKey="id" listValue="deptName"></s:select>
+	            	<s:select name="parent.id" list="deptList" headerKey="" headerValue="--请选择--" listKey="id" listValue="deptName"></s:select>
 	            </td>
 	        </tr>		
 	        <tr>

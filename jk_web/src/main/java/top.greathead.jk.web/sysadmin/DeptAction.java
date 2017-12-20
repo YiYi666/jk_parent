@@ -2,9 +2,12 @@ package top.greathead.jk.web.sysadmin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import top.greathead.jk.entity.Dept;
 import top.greathead.jk.service.DeptService;
 import top.greathead.jk.utils.Pagination;
 import top.greathead.jk.web.BaseAction;
+
+import java.util.List;
 
 /**
  * @author coach tam
@@ -18,11 +21,23 @@ public class DeptAction extends BaseAction {
     @Autowired
    private DeptService deptService;
 
+    private List<Dept> deptList;
+
+    public String insert(){
+
+        return "rlist";
+    }
+
+
     public String list(){
         page = deptService.findByPage(page);
         page.setUrl("deptAction_list");
         push(page);
         return "list";
+    }
+    public String tocreate(){
+        deptList = deptService.findAll();
+        return "tocreate";
     }
 
     public Pagination getPage() {
@@ -31,5 +46,9 @@ public class DeptAction extends BaseAction {
 
     public void setPage(Pagination page) {
         this.page = page;
+    }
+
+    public List<Dept> getDeptList() {
+        return deptList;
     }
 }
