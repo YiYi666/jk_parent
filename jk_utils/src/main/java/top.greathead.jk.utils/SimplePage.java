@@ -5,7 +5,7 @@ package top.greathead.jk.utils;
  */
 public class SimplePage  {
 	private static final long serialVersionUID = 1L;
-	public static final int DEF_COUNT = 10;// 默认显示数量
+	public static final int DEF_COUNT = 4;// 默认显示数量
 
 	protected int totalCount = 0;
 	protected int pageSize = DEF_COUNT;

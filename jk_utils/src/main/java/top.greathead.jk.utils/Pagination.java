@@ -113,7 +113,7 @@ public class Pagination extends SimplePage implements java.io.Serializable {
 
 
         sBuf.append("&nbsp;第").append(curPageNo).append("页 / 共").append(getTotalPage()).append("页&nbsp;");
-        sBuf.append("&nbsp;总共").append(getTotalPage()).append("条记录 每页").append(totalCount).append("条记录&nbsp;");
+        sBuf.append("&nbsp;总共").append(getTotalCount()).append("条记录 每页").append(pageSize).append("条记录&nbsp;");
 
         sBuf.append("<a href=\"#").append("\" onclick=\"setPageNo(1);formSubmit('").append(url).append("','_self')");
         sBuf.append("\">[首页]");

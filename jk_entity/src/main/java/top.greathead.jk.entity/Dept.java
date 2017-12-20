@@ -1,17 +1,17 @@
 package top.greathead.jk.entity;
 
 public class Dept {
-    private String deptId;
+    private String id;
     private String deptName;
     private Long state;
     private Dept parent;
 
-    public String getDeptId() {
-        return deptId;
+    public String getId() {
+        return id;
     }
 
-    public void setDeptId(String deptId) {
-        this.deptId = deptId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDeptName() {

@@ -39,13 +39,13 @@
                 <!-- 格式化 SQL -->
                 <prop key="hibernate.format_sql">true</prop>
                 <!-- 映射到 DDL 的自动创建 -->
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
             </props>
         </property>
         <!-- 配置引入映射文件 -->
         <property name="mappingLocations">
             <list>
-                <value>classpath:hbm/Dept.hbm.xml</value>
+                <value>classpath:hbm/*.hbm.xml</value>
             </list>
         </property>
 
