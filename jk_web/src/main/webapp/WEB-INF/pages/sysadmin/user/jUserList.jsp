@@ -13,8 +13,8 @@
 				for(var index=0; index<checkBoxArray.length; index++) {
 					if (checkBoxArray[index].checked) {
 						count++;
-					}	
-				} 
+					}
+				}
 			//jquery
 			//var count = $("[input name='id']:checked").size();
 			if(count==1)
@@ -57,16 +57,16 @@
 </div>
 </div>
 </div>
-   
+
 <div class="textbox" id="centerTextbox">
   <div class="textbox-header">
   <div class="textbox-inner-header">
   <div class="textbox-title">
      用户列表
-  </div> 
   </div>
   </div>
-  
+  </div>
+
 <div>
 
 
@@ -82,23 +82,23 @@
 	</thead>
 	<tbody class="tableBody" >
 ${links}
-	
+
 	<c:forEach items="${results}" var="o" varStatus="status">
-	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
+	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" align="left" >
 		<td><input type="checkbox" name="id" value="${o.id}"/></td>
 		<td>${status.index+1}</td>
 		<td><a href="userAction_toview?id=${o.id}">${o.userName}</a></td>
 		<td>${o.state }</td>
 	</tr>
 	</c:forEach>
-	
+
 	</tbody>
 </table>
 </div>
- 
+
 </div>
- 
- 
+
+</div>
 </form>
 </body>
 </html>

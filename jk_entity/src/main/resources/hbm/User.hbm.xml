@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="top.greathead.jk.entity.User" table="t_user">
 
-        <id name="userId" column="userId">
+    <class name="top.greathead.jk.entity.User" table="USER_P" schema="JK">
+        <id name="id" column="USER_ID">
             <generator class="uuid"/>
         </id>
-        <property name="userName" />
+        <property name="userName" column="USER_NAME"/>
+        <property name="password" column="PASSWORD"/>
+        <property name="state" column="STATE"/>
+        <property name="createBy" column="CREATE_BY"/>
+        <property name="createDept" column="CREATE_DEPT"/>
+        <property name="createTime" column="CREATE_TIME"/>
+        <property name="updateBy" column="UPDATE_BY"/>
+        <property name="updateTime" column="UPDATE_TIME"/>
+        <many-to-one name="dept" class="top.greathead.jk.entity.Dept" column="DEPT_ID"/>
     </class>
-
 </hibernate-mapping>

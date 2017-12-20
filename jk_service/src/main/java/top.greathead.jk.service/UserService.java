@@ -2,9 +2,14 @@ package top.greathead.jk.service;
 
 
 import top.greathead.jk.entity.User;
+import top.greathead.jk.utils.Pagination;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> findlist();
+    Pagination findlist(Pagination page);
+
+    User findById(String id);
+
+    List<User> findAll();
 }

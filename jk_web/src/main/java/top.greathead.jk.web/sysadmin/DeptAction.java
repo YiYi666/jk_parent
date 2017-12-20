@@ -31,7 +31,6 @@ public class DeptAction extends BaseAction implements ModelDriven<Dept>{
         return "rlist";
     }
 
-
     public String list(){
         page = deptService.findByPage(page);
         page.setUrl("deptAction_list");
@@ -58,6 +57,7 @@ public class DeptAction extends BaseAction implements ModelDriven<Dept>{
         deptService.delete(model.getId().split(", "));
         return "rlist";
     }
+
     public String toview(){
         model = deptService.findById(model.getId());
         push(model);

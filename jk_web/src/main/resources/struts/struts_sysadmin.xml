@@ -7,13 +7,19 @@
 
 
     <package name="sysadmin" namespace="/sysadmin" extends="default">
-            <action name="deptAction_*" class="deptAction" method="{1}">
-                <result name="list">/WEB-INF/pages/sysadmin/dept/jDeptList.jsp</result>
-                <result name="tocreate">/WEB-INF/pages/sysadmin/dept/jDeptCreate.jsp</result>
-                <result name="toupdate">/WEB-INF/pages/sysadmin/dept/jDeptUpdate.jsp</result>
-                <result name="toview">/WEB-INF/pages/sysadmin/dept/jDeptView.jsp</result>
-                <result name="rlist" type="redirectAction">deptAction_list</result>
-            </action>
+        <action name="deptAction_*" class="deptAction" method="{1}">
+            <result name="list">/WEB-INF/pages/sysadmin/dept/jDeptList.jsp</result>
+            <result name="tocreate">/WEB-INF/pages/sysadmin/dept/jDeptCreate.jsp</result>
+            <result name="toupdate">/WEB-INF/pages/sysadmin/dept/jDeptUpdate.jsp</result>
+            <result name="toview">/WEB-INF/pages/sysadmin/dept/jDeptView.jsp</result>
+            <result name="rlist" type="redirectAction">deptAction_list</result>
+        </action>
+        <action name="userAction_*" class="userAction" method="{1}">
+            <result name="list">/WEB-INF/pages/sysadmin/user/jUserList.jsp</result>
+            <result name="toview">/WEB-INF/pages/sysadmin/user/jUserView.jsp</result>
+            <result name="tocreate">/WEB-INF/pages/sysadmin/user/jUserCreate.jsp</result>
+           <!-- <result name="rlist" type="redirectAction">deptAction_list</result>-->
+        </action>
     </package>
 
 </struts>
