@@ -2,6 +2,7 @@ package top.greathead.jk.dao;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.jdbc.core.RowMapper;
+import top.greathead.jk.entity.Module;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -166,4 +167,6 @@ public interface BaseDao<T, ID extends Serializable> {
      * @return
      */
     top.greathead.jk.utils.Pagination page(Integer page, Integer pageSize, DetachedCriteria criteria);
+
+    void evict(T module);
 }

@@ -478,4 +478,9 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 		String countHql = "select count(*) "+ hql.substring(beginIndex);
 		System.out.println(countHql);
 	}
+
+	@Override
+	public void evict(T module) {
+		getSession().evict(module);
+	}
 }

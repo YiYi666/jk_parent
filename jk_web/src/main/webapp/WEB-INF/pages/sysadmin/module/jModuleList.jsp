@@ -14,10 +14,10 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="view"><a href="#" onclick="formSubmit('moduleAction_toview','_self');this.blur();">查看</a></li>
+<li id="view"><a href="#" onclick="javascript:toView('moduleAction_toview');">查看</a></li>
 <li id="new"><a href="#" onclick="formSubmit('moduleAction_tocreate','_self');this.blur();">新增</a></li>
-<li id="update"><a href="#" onclick="formSubmit('moduleAction_toupdate','_self');this.blur();">修改</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('moduleAction_delete','_self');this.blur();">删除</a></li>
+<li id="update"><a href="#" onclick="javascript:toUpdate('moduleAction_toupdate')">修改</a></li>
+<li id="delete"><a href="#" onclick="javascript:toDelete('moduleAction_delete');">删除</a></li>
 </ul>
   </div>
 </div>

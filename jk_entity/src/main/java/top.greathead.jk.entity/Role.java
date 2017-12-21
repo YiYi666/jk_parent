@@ -1,11 +1,15 @@
 package top.greathead.jk.entity;
 
 
+import java.util.Set;
+
 public class Role extends BaseEntity {
     private String id;
     private String name;
     private String remark;
     private Long orderNo;
+
+    private Set<Module> moduleSet;
 
     public String getId() {
         return id;
@@ -39,7 +43,11 @@ public class Role extends BaseEntity {
         this.orderNo = orderNo;
     }
 
+    public Set<Module> getModuleSet() {
+        return moduleSet;
+    }
 
-
-
+    public void setModuleSet(Set<Module> moduleSet) {
+        this.moduleSet = moduleSet;
+    }
 }
