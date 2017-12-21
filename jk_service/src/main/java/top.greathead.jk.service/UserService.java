@@ -12,4 +12,12 @@ public interface UserService {
     User findById(String id);
 
     List<User> findAll();
+
+    void insert(User model);
+
+    void update(User model);
+
+    void delete(String[] ids);
+
+    void updateRoles(String id, String[] roleIds);
 }

@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="top.greathead.jk.entity.User" table="USER_P" schema="JK">
+    <class name="top.greathead.jk.entity.User" table="USER_P" schema="JK" dynamic-update="true" dynamic-insert="true">
         <id name="id" column="USER_ID">
             <generator class="uuid"/>
         </id>
@@ -16,6 +16,12 @@
         <property name="createTime" column="CREATE_TIME"/>
         <property name="updateBy" column="UPDATE_BY"/>
         <property name="updateTime" column="UPDATE_TIME"/>
+
         <many-to-one name="dept" class="top.greathead.jk.entity.Dept" column="DEPT_ID"/>
+        <one-to-one name="userInfo" class="top.greathead.jk.entity.UserInfo" cascade="all"/>
+        <set name="roleSet" table="ROLE_USER_P" inverse="false">
+            <key column="USER_ID"></key>
+            <many-to-many column="ROLE_ID" class="top.greathead.jk.entity.Role" />
+        </set>
     </class>
 </hibernate-mapping>

@@ -4,8 +4,8 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import top.greathead.jk.entity.Dept;
-import top.greathead.jk.service.DeptService;
+import top.greathead.jk.entity.Role;
+import top.greathead.jk.service.RoleService;
 import top.greathead.jk.utils.Pagination;
 import top.greathead.jk.web.BaseAction;
 
@@ -15,53 +15,53 @@ import java.util.List;
  * @author coach tam
  * @date 2017/12/20
  */
-@Controller("deptAction")
+@Controller("roleAction")
 @Scope("prototype")
-public class DeptAction extends BaseAction implements ModelDriven<Dept>{
+public class RoleAction extends BaseAction implements ModelDriven<Role>{
 
     private Pagination page = new Pagination();
 
     @Autowired
-    private DeptService deptService;
+    private RoleService roleService;
 
-    private List<Dept> deptList;
+    private List<Role> roleList;
 
-    private Dept model = new Dept();
+    private Role model = new Role();
 
     public String insert(){
-        deptService.insert(model);
+        roleService.insert(model);
         return "rlist";
     }
 
     public String list(){
-        page = deptService.findByPage(page);
-        page.setUrl("deptAction_list");
+        page = roleService.findByPage(page);
+        page.setUrl("roleAction_list");
         push(page);
         return "list";
     }
     public String tocreate(){
-        deptList = deptService.findAll();
+        roleList = roleService.findAll();
         return "tocreate";
     }
     public String toupdate(){
-        deptList = deptService.findAll();
-        model = deptService.findById(model.getId());
-        deptList.remove(model);
+        roleList = roleService.findAll();
+        model = roleService.findById(model.getId());
+        roleList.remove(model);
         push(model);
         return "toupdate";
     }
     public String update(){
-        deptService.update(model);
+        roleService.update(model);
         return "rlist";
     }
 
     public String delete(){
-        deptService.delete(model.getId().split(", "));
+        roleService.delete(model.getId().split(", "));
         return "rlist";
     }
 
     public String toview(){
-        model = deptService.findById(model.getId());
+        model = roleService.findById(model.getId());
         push(model);
         return "toview";
     }
@@ -74,12 +74,12 @@ public class DeptAction extends BaseAction implements ModelDriven<Dept>{
         this.page = page;
     }
 
-    public List<Dept> getDeptList() {
-        return deptList;
+    public List<Role> getRoleList() {
+        return roleList;
     }
 
     @Override
-    public Dept getModel() {
+    public Role getModel() {
         return model;
     }
 }

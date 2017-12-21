@@ -1652,3 +1652,68 @@ var inputs = document.getElementsByTagName('input');
 window.onload = reInput;
 
 
+function isOnlyChecked() {
+    var checkBoxArray = document.getElementsByName('id');
+    var count = 0;
+    for (var index = 0; index < checkBoxArray.length; index++) {
+        if (checkBoxArray[index].checked) {
+            count++;
+        }
+    }
+    //jquery
+    //var count = $("[input name='id']:checked").size();
+    if (count == 1)
+        return true;
+    else
+        return false;
+}
+
+function isChecked() {
+    var checkBoxArray = document.getElementsByName('id');
+    var count = 0;
+    for (var index = 0; index < checkBoxArray.length; index++) {
+        if (checkBoxArray[index].checked) {
+            count++;
+        }
+    }
+    //jquery
+    //var count = $("[input name='id']:checked").size();
+    if (count > 0)
+        return true;
+    else
+        return false;
+}
+
+function toView(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+
+function toRole(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+
+//实现更新
+function toUpdate(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+
+function toDelete(url) {
+    if (isChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项或多项，再进行操作！");
+    }
+}
+

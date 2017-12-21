@@ -1,18 +1,17 @@
 package top.greathead.jk.entity;
 
-import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
-public class User {
+public class User extends BaseEntity {
     private String id;
     private String userName;
     private String password;
     private Long state;
-    private String createBy;
-    private String createDept;
-    private Timestamp createTime;
-    private String updateBy;
-    private Timestamp updateTime;
+
     private Dept dept;
+    private UserInfo userInfo;
+    private Set<Role> roleSet = new HashSet<Role>();
 
     public String getId() {
         return id;
@@ -46,46 +45,6 @@ public class User {
         this.state = state;
     }
 
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public String getCreateDept() {
-        return createDept;
-    }
-
-    public void setCreateDept(String createDept) {
-        this.createDept = createDept;
-    }
-
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateBy() {
-        return updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public Dept getDept() {
         return dept;
     }
@@ -94,5 +53,19 @@ public class User {
         this.dept = dept;
     }
 
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
 
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public Set<Role> getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(Set<Role> roleSet) {
+        this.roleSet = roleSet;
+    }
 }
