@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Service("UserService")
+@Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
 
@@ -78,5 +78,10 @@ public class UserServiceImpl implements UserService {
         }
         user.setRoleSet(roleSet);
         userDao.update(user);
+    }
+
+    @Override
+    public User findUserByUserName(String username) {
+        return  userDao.getByHQL("from User where user_name = ?", username);
     }
 }

@@ -17,7 +17,7 @@
         <property name="updateBy" column="UPDATE_BY"/>
         <property name="updateTime" column="UPDATE_TIME"/>
 
-        <set name="moduleSet">
+        <set name="moduleSet" table="ROLE_MODULE_P">
             <key column="ROLE_ID"></key>
             <many-to-many column="MODULE_ID" class="top.greathead.jk.entity.Module"></many-to-many>
         </set>

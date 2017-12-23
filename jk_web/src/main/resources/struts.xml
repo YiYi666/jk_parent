@@ -22,6 +22,9 @@
             <result name="success">/WEB-INF/pages/home/fmain.jsp</result>
         </action>
 
+        <action name="logout" class="logoutAction" method="logout">
+            <result name="logout">/WEB-INF/pages/sysadmin/login/login.jsp</result>
+        </action>
         <action name="homeAction_*" class="homeAction" method="{1}">
             <result name="fmain">/WEB-INF/pages/home/fmain.jsp</result>
             <result name="title">/WEB-INF/pages/home/title.jsp</result>

@@ -29,7 +29,7 @@
 				  onmouseover="this.className='loginImgOver'" 
 				  onmouseout="this.className='loginImgOut'"
 				/>
-				<input class="resetImgOut" value="" type="button"   
+				<input class="resetImgOut" value="" type="button"
 				  onmouseover="this.className='resetImgOver'" 
 				  onmouseout="this.className='resetImgOut'"
 				/>

@@ -20,4 +20,6 @@ public interface UserService {
     void delete(String[] ids);
 
     void updateRoles(String id, String[] roleIds);
+
+    User findUserByUserName(String username);
 }
