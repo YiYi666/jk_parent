@@ -17,7 +17,7 @@ public class LoginAction extends ActionSupport {
 	
 	private String username;
 	private String password;
-	private String errorMsg;
+	private String errorInfo = null;
 
 	public String login(){
 		if(null == username || null == password){
@@ -32,7 +32,7 @@ public class LoginAction extends ActionSupport {
 				ServletActionContext.getRequest().getSession().setAttribute(SysConstant.C_USER,user);
 				return "success";
 			}catch (Exception e){
-				errorMsg="用户名或密码错误！";
+				errorInfo="用户名或密码错误！";
 				e.printStackTrace();
 				return "login";
 			}
@@ -48,7 +48,7 @@ public class LoginAction extends ActionSupport {
 		this.password = password;
 	}
 
-	public String getErrorMsg() {
-		return errorMsg;
+	public String getErrorInfo() {
+		return errorInfo;
 	}
 }

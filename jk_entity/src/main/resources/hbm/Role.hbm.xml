@@ -17,9 +17,9 @@
         <property name="updateBy" column="UPDATE_BY"/>
         <property name="updateTime" column="UPDATE_TIME"/>
 
-        <set name="moduleSet" table="ROLE_MODULE_P">
+        <set name="moduleSet" table="ROLE_MODULE_P" >
             <key column="ROLE_ID"></key>
-            <many-to-many column="MODULE_ID" class="top.greathead.jk.entity.Module"></many-to-many>
+            <many-to-many column="MODULE_ID" class="top.greathead.jk.entity.Module" order-by="orderNo"></many-to-many>
         </set>
     </class>
 </hibernate-mapping>
