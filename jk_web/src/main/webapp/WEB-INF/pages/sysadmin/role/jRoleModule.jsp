@@ -25,10 +25,13 @@
 		
 		$(document).ready(function() {
 			$.ajax( {
-				url : "${ctx}/sysadmin/roleAction_roleModuleJsonStr.action?id=${id}",
+				url : "${ctx}/sysadmin/roleAction_getJsonStr?id=${id}",
 				type : "get",
-				dataType : "text",
-				success : initZtree
+//				dataType : "text",
+				success : function (data) {
+					var json = eval("("+data+")");
+                    zTreeObj = $.fn.zTree.init($('#jkTree'), setting, json);
+                }
 			});
 		});
 		
