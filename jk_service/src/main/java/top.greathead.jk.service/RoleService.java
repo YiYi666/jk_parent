@@ -19,4 +19,6 @@ public interface RoleService {
     void update(Role model);
 
     void delete(String[] split);
+
+    void updateModule(String id, String moduleIds);
 }

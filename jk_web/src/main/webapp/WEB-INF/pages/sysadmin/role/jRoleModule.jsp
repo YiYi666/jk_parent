@@ -29,8 +29,9 @@
 				type : "get",
 //				dataType : "text",
 				success : function (data) {
-					var json = eval("("+data+")");
-                    zTreeObj = $.fn.zTree.init($('#jkTree'), setting, json);
+//					var json = eval("("+data+")");
+//                  zTreeObj = $.fn.zTree.init($('#jkTree'), setting, json);
+                    initZtree(data);
                 }
 			});
 		});
@@ -39,7 +40,7 @@
 		function initZtree(data) {
 			var zNodes = eval("(" + data + ")");		//动态js语句
 			zTreeObj = $.fn.zTree.init($('#jkTree'), setting, zNodes);	//jkTree 树的id，支持多个树
-			zTreeObj.expandAll(true);		//展开所有树节点
+//			zTreeObj.expandAll(true);		//展开所有树节点
 		}
 		
 		//获取所有选择的节点

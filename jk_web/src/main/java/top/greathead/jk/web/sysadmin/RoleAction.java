@@ -37,8 +37,9 @@ public class RoleAction extends BaseAction implements ModelDriven<Role>{
     private ModuleService moduleService;
 
     private List<Role> roleList;
-
     private Role model = new Role();
+    private String moduleIds;
+
 
     public String insert(){
         roleService.insert(model);
@@ -98,7 +99,6 @@ public class RoleAction extends BaseAction implements ModelDriven<Role>{
             }
             ztreeVOList.add(ztreeVO);
         }
-
         String json = FastJsonUtil.toJSONString(ztreeVOList);
         HttpServletResponse response = ServletActionContext.getResponse();
         response.setContentType("text/html;charset=utf-8");
@@ -107,6 +107,12 @@ public class RoleAction extends BaseAction implements ModelDriven<Role>{
         writer.flush();
         writer.close();
         return null;
+    }
+    public String module(){
+
+        roleService.updateModule(model.getId(), moduleIds);
+
+        return "rlist";
     }
 
     public Pagination getPage() {
@@ -124,5 +130,9 @@ public class RoleAction extends BaseAction implements ModelDriven<Role>{
     @Override
     public Role getModel() {
         return model;
+    }
+
+    public void setModuleIds(String moduleIds) {
+        this.moduleIds = moduleIds;
     }
 }

@@ -4,14 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.greathead.jk.dao.BaseDao;
+import top.greathead.jk.entity.Module;
 import top.greathead.jk.entity.Role;
-import top.greathead.jk.entity.Role;
-import top.greathead.jk.entity.User;
 import top.greathead.jk.service.RoleService;
 import top.greathead.jk.utils.Pagination;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Service
 @Transactional
 public class RoleServiceImpl implements RoleService {
@@ -64,5 +66,19 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
-    
+    @Override
+    public void updateModule(String id, String moduleIds) {
+        Role role = roleDao.get(Role.class, id);
+        Set<Module> moduleSet = new HashSet<>();
+        String[] split = moduleIds.split(",");
+        if(!moduleIds.isEmpty() || moduleIds == null){
+            for(String moduleId: split){
+                Module module = new Module();
+                module.setId(moduleId);
+                moduleSet.add(module);
+            }
+        }
+        role.setModuleSet(moduleSet);
+        roleDao.update(role);
+    }
 }
