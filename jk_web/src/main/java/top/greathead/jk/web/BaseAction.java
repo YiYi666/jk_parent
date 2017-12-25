@@ -4,12 +4,15 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.context.annotation.Scope;
+import top.greathead.jk.entity.User;
+import top.greathead.jk.utils.SysConstant;
 
 
 //通过RequestAware, SessionAware, ApplicationAware实行接口获得request,session,application对象，action中就可直接调用
@@ -61,5 +64,11 @@ public  class BaseAction extends ActionSupport implements  RequestAware, Session
 	{
 		ActionContext.getContext().getValueStack().push(o);
 	}
+
+
+	protected User getUser(){
+		return (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+	}
+
 
 }

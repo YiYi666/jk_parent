@@ -7,7 +7,7 @@ import top.greathead.jk.utils.Pagination;
 import java.util.List;
 
 public interface UserService {
-    Pagination findlist(Pagination page);
+    Pagination findlist(Pagination page, User user);
 
     User findById(String id);
 

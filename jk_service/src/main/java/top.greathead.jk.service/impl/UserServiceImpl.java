@@ -27,8 +27,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public Pagination findlist(Pagination page) {
-        page = userDao.pageByHql("from User", page.getPageNo(), page.getPageSize());
+    public Pagination findlist(Pagination page, User user) {
+        String hql = "from User where 1=1";
+        if(user.getUserInfo().getDegree()==2){
+            hql = hql + " and create_dept = '" + user.getDept().getDeptName() +"'";
+        }else if(user.getUserInfo().getDegree()==3){
+            hql = hql + " and user_name = '" + user.getUserName() +"'";
+        }
+        page = userDao.pageByHql(hql, page.getPageNo(), page.getPageSize());
         return page;
     }
 

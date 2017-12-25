@@ -1,6 +1,7 @@
 package top.greathead.jk.web.sysadmin;
 
 import com.opensymphony.xwork2.ModelDriven;
+import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import top.greathead.jk.web.BaseAction;
 
 import java.util.List;
 import java.util.Set;
+
+import static org.apache.shiro.web.filter.mgt.DefaultFilter.user;
 
 
 @Controller("userAction")
@@ -39,7 +42,8 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
     private String[] roleIds;
 
     public String list(){
-        page = userService.findlist(page);
+        User user = getUser();
+        page = userService.findlist(page, user);
         page.setUrl("userAction_list");
         push(page);
         return "list";

@@ -62,8 +62,8 @@
 	            </td>
 	        </tr>		
 	        <tr>
-	            <td class="columnTitle">从属：</td>
-	            <td class="tableContent"><input type="text" name="belong" value=""/></td>
+	            <td class="columnTitle">父模板名字：</td>
+	            <td class="tableContent"><input type="text" name="parentName" value=""/></td>
 	            <td class="columnTitle">复用标识：</td>
 	            <td class="tableContent"><input type="text" name="cwhich" value=""/></td>
 	        </tr>			
