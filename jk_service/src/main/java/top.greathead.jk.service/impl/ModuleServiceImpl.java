@@ -31,6 +31,8 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public void insert(Module model) {
+        Module module = moduleDao.getByHQL("from Module where name = ?",model.getParentName());
+        model.setParentId(module.getId());
         moduleDao.save(model);
     }
 
