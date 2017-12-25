@@ -42,6 +42,8 @@ public class ModuleServiceImpl implements ModuleService {
         model.setUpdateTime(new Date());
         model.setCreateTime(module.getCreateTime());
         moduleDao.evict(module);
+        Module module2 = moduleDao.getByHQL("from Module where name = ?",model.getParentName());
+        model.setParentId(module2.getId());
         moduleDao.update(model);
     }
 

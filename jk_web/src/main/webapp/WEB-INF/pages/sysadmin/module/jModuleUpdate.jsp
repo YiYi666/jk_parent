@@ -63,8 +63,8 @@
 	            </td>
 	        </tr>		
 	        <tr>
-	            <td class="columnTitle">从属：</td>
-	            <td class="tableContent"><input type="text" name="belong" value="${belong}"/></td>
+	            <td class="columnTitle">父模块名字：</td>
+	            <td class="tableContent"><input type="text" name="parentName" value="${parentName}"/></td>
 	            <td class="columnTitle">复用标识：</td>
 	            <td class="tableContent"><input type="text" name="cwhich" value="${cwhich}"/></td>
 	        </tr>			
