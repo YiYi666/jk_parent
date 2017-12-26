@@ -8,6 +8,8 @@ import top.greathead.jk.entity.Role;
 import top.greathead.jk.entity.User;
 import top.greathead.jk.service.RoleService;
 import top.greathead.jk.service.UserService;
+import top.greathead.jk.utils.Encrypt;
+import top.greathead.jk.utils.MailUtils;
 import top.greathead.jk.utils.Pagination;
 
 import java.util.Date;
@@ -24,6 +26,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private MailUtils mailUtils;
 
     @Override
     @Transactional(readOnly = true)
@@ -47,7 +52,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void insert(User model) {
         model.getUserInfo().setUser(model);
+        String password = "123456";
+        model.setPassword(Encrypt.md5(password,model.getUserName()));
         userDao.save(model);
+        String title = "欢迎来到本公司";
+        String text = "已成功为你注册用户，用户名/密码："+model.getUserName()+"/"+password;
+        if(null!=model.getUserInfo().getEmail()||!model.getUserInfo().getEmail().isEmpty()){
+            mailUtils.send(title,text,model.getUserInfo().getEmail());
+        }
+        System.out.println("邮件发送成功！");
     }
 
     @Override
