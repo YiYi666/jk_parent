@@ -1,5 +1,6 @@
 package top.greathead.jk.service.impl;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private MailUtils mailUtils;
+
+    private Logger logger = Logger.getLogger(UserServiceImpl.class);
 
     @Override
     @Transactional(readOnly = true)
@@ -76,12 +79,12 @@ public class UserServiceImpl implements UserService {
                             }
                         }catch (Exception e){
                             e.printStackTrace();
+                            logger.error("发送第\""+num+"\"次失败!5秒过后再次尝试。");
                         }
                     }
                 }
             }).start();
         }
-
     }
 
     @Override

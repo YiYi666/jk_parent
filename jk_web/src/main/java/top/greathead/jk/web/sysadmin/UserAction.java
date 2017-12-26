@@ -1,7 +1,6 @@
 package top.greathead.jk.web.sysadmin;
 
 import com.opensymphony.xwork2.ModelDriven;
-import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,8 +18,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Set;
-
-import static org.apache.shiro.web.filter.mgt.DefaultFilter.user;
 
 
 @Controller("userAction")
