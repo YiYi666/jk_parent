@@ -4,18 +4,11 @@
 <head>
 	<title></title>
 	<script type="text/javascript" src="${ctx }/js/datepicker/WdatePicker.js"></script>
-	<script type="text/javascript" src="${ctx }/components/jquery_validate/jquery-3.1.1.js"></script>
-	<script type="text/javascript" src="${ctx }/components/jquery_validate/jquery.validate.js"></script>
-	<script type="text/javascript" src="${ctx }/components/jquery_validate/messages_zh.js"></script>
+
+
 	<script>
 
-        $.validator.setDefaults({
-            submitHandler: function() {
-                alert("submitted!");
-            }
-        });
-
-        $(document).ready(function () {
+            $(document).ready(function () {
 			$("[name = 'userName']").blur(function () {
 				var setting = {
 				    url:"${ctx }/sysadmin/userAction_checkUserName",
@@ -36,14 +29,14 @@
 </head>
 
 <body>
-<form name="icform" method="post">
+<form name="icform" id="icform" method="post">
 
 <div id="menubar">
 <div id="middleMenubar">
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="save"><a href="#" onclick="formSubmit('userAction_insert','_self');this.blur();">保存</a></li>
+<li id="save" value="userAction_insert"><a href="#">保存</a></li>
 <li id="back"><a href="#" onclick="history.go(-1);">返回</a></li>
 </ul>
   </div>

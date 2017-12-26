@@ -57,15 +57,16 @@ public class UserServiceImpl implements UserService {
         userDao.save(model);
         String title = "欢迎来到本公司";
         String text = "已成功为你注册用户，用户名/密码："+model.getUserName()+"/"+password;
-        if(null!=model.getUserInfo().getEmail()||!model.getUserInfo().getEmail().isEmpty()){
+        if(null!=model.getUserInfo().getEmail()&&!model.getUserInfo().getEmail().isEmpty()){
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     boolean isOk = false;
                     int num = 0;
-                    while (!isOk||num<3){
+                    while (!isOk&&num<3){
                         try {
                             mailUtils.send(title,text,model.getUserInfo().getEmail());
+                            System.out.println("邮件发送成功！");
                             isOk = true;
                             num++;
                             try {
@@ -80,7 +81,7 @@ public class UserServiceImpl implements UserService {
                 }
             }).start();
         }
-        System.out.println("邮件发送成功！");
+
     }
 
     @Override

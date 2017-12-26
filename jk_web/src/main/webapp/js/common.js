@@ -1717,3 +1717,19 @@ function toDelete(url) {
     }
 }
 
+
+var url;
+$.validator.setDefaults({
+    submitHandler: function() {
+        formSubmit(url,'_self');this.blur();
+    }
+});
+
+$().ready(function() {
+    $("[name = 'icform']").validate();
+
+    $('#save').click(function () {
+        url = $(this).attr("value");
+        $("[name = 'icform']").submit();
+    })
+});
