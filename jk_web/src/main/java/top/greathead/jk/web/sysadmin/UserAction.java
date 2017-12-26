@@ -2,6 +2,7 @@ package top.greathead.jk.web.sysadmin;
 
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.shiro.web.filter.mgt.DefaultFilter;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import top.greathead.jk.service.UserService;
 import top.greathead.jk.utils.Pagination;
 import top.greathead.jk.web.BaseAction;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Set;
 
@@ -98,6 +101,16 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
     public String delete(){
         userService.delete(model.getId().split(", "));
         return "rlist";
+    }
+    public String checkUserName() throws IOException {
+        User user = userService.findUserByUserName(model.getUserName());
+        PrintWriter writer = ServletActionContext.getResponse().getWriter();
+        if(user!=null){
+            writer.write('1');
+        }else {
+            writer.write('0');
+        }
+        return null;
     }
 
 

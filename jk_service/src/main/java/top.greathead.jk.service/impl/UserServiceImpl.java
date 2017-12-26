@@ -58,7 +58,27 @@ public class UserServiceImpl implements UserService {
         String title = "欢迎来到本公司";
         String text = "已成功为你注册用户，用户名/密码："+model.getUserName()+"/"+password;
         if(null!=model.getUserInfo().getEmail()||!model.getUserInfo().getEmail().isEmpty()){
-            mailUtils.send(title,text,model.getUserInfo().getEmail());
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    boolean isOk = false;
+                    int num = 0;
+                    while (!isOk||num<3){
+                        try {
+                            mailUtils.send(title,text,model.getUserInfo().getEmail());
+                            isOk = true;
+                            num++;
+                            try {
+                                Thread.sleep(3000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }).start();
         }
         System.out.println("邮件发送成功！");
     }

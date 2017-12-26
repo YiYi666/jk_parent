@@ -4,6 +4,35 @@
 <head>
 	<title></title>
 	<script type="text/javascript" src="${ctx }/js/datepicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="${ctx }/components/jquery_validate/jquery-3.1.1.js"></script>
+	<script type="text/javascript" src="${ctx }/components/jquery_validate/jquery.validate.js"></script>
+	<script type="text/javascript" src="${ctx }/components/jquery_validate/messages_zh.js"></script>
+	<script>
+
+        $.validator.setDefaults({
+            submitHandler: function() {
+                alert("submitted!");
+            }
+        });
+
+        $(document).ready(function () {
+			$("[name = 'userName']").blur(function () {
+				var setting = {
+				    url:"${ctx }/sysadmin/userAction_checkUserName",
+					data:"userName="+this.value,
+					type:"get",
+					success:function (data) {
+				        if(data == "1"){
+				            $("#msg").text("此用户名已存在！").css("color",'red');
+                        }else {
+                            $("#msg").text("此用户可用！").css("color",'green');
+                        }
+                    }
+				}
+				$.ajax(setting)
+            })
+        })
+	</script>
 </head>
 
 <body>
@@ -46,7 +75,7 @@
 	        </tr>
         	<tr>
 	            <td class="columnTitle">登录名：</td>
-	            <td class="tableContent"><input type="text" name="userName" value=""/></td>
+	            <td class="tableContent"><input type="text" name="userName" required value=""/> <span id="msg"></span></td>
 	            <td class="columnTitle">状态：</td>
 	            <td class="tableContentAuto">
 	            	<input type="radio" name="state" value="1" checked class="input"/>启用
@@ -97,7 +126,7 @@
 	        </tr>	
         	<tr>
         	    <td class="columnTitle">邮箱：</td>
-	            <td class="tableContent"><input type="text" name="userInfo.email" value=""/></td>
+	            <td class="tableContent"><input type="text" required name="userInfo.email" value=""/></td>
 	            <td class="columnTitle">出生年月：</td>
 	            <td class="tableContent">
 					<input type="text" style="width:90px;" name="userInfo.birthday"
@@ -115,8 +144,7 @@
 	        </tr>	
 		</table>
 	</div>
- 
- 
+</div>
 </form>
 </body>
 </html>
