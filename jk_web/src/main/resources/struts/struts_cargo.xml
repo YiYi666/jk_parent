@@ -18,6 +18,10 @@
             <result name="tocreate">/WEB-INF/pages/cargo/contract/jContractProductCreate.jsp</result>
             <result name="toupdate">/WEB-INF/pages/cargo/contract/jContractProductUpdate.jsp</result>
         </action>
+        <action name="extCproductAction_*" class="extCproductAction" method="{1}">
+            <result name="tocreate">/WEB-INF/pages/cargo/contract/jExtCproductCreate.jsp</result>
+            <result name="toupdate">/WEB-INF/pages/cargo/contract/jExtCproductUpdate.jsp</result>
+        </action>
        
     </package>
 

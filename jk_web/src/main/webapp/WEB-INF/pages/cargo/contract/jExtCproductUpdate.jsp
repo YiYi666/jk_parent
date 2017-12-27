@@ -23,7 +23,7 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="save"><a href="#" onclick="formSubmit('extCproductAction_update','_self');this.blur();">保存</a></li>
+<li id="save" value="extCproductAction_update"><a href="#">保存</a></li>
 <li id="back"><a href="#" onclick="history.go(-1);">返回</a></li>
 </ul>
   </div>
@@ -58,7 +58,7 @@
 	        </tr>		
 	        <tr>
 	            <td class="columnTitle">数量：</td>
-	            <td class="tableContent"><input type="text" name="cnumber" value="${cnumber}"/></td>
+	            <td class="tableContent"><input type="text" name="cnumber" required value="${cnumber}"/></td>
 	            <td class="columnTitle">包装单位：</td>
 	            <td class="tableContentAuto">
 	            	<input type="radio" name="packingUnit" value="PCS" <c:if test="${packingUnit=='PCS'}">checked</c:if> class="input">只
@@ -67,7 +67,7 @@
 	        </tr>		
 	        <tr>
 	            <td class="columnTitle">单价：</td>
-	            <td class="tableContent"><input type="text" name="price" value="${price}"/></td>
+	            <td class="tableContent"><input type="text" name="price" required value="${price}"/></td>
 	            <td class="columnTitle">排序号：</td>
 	            <td class="tableContent"><input type="text" name="orderNo" value="${orderNo}"/></td>
 	        </tr>		

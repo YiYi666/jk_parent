@@ -11,6 +11,8 @@ import top.greathead.jk.utils.Pagination;
 import java.util.Date;
 import java.util.List;
 
+import static oracle.net.aso.C01.l;
+
 @Service
 @Transactional
 public class ContractServiceImpl implements ContractService {
@@ -31,6 +33,8 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public void insert(Contract model) {
+        Long totalAmount = 0L;
+        model.setTotalAmount(totalAmount);
         contractDao.save(model);
     }
 

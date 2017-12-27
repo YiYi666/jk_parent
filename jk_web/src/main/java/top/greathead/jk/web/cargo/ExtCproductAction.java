@@ -4,9 +4,9 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import top.greathead.jk.entity.ContractProduct;
+import top.greathead.jk.entity.ExtCproduct;
 import top.greathead.jk.entity.Factory;
-import top.greathead.jk.service.ContractProductService;
+import top.greathead.jk.service.ExtCproductService;
 import top.greathead.jk.service.FactoryService;
 import top.greathead.jk.utils.Pagination;
 import top.greathead.jk.web.BaseAction;
@@ -17,62 +17,63 @@ import java.util.List;
  * @author coach tam
  * @date 2017/12/20
  */
-@Controller("contractProductAction")
+@Controller("extCproductAction")
 @Scope("prototype")
-public class ContractProductAction extends BaseAction implements ModelDriven<ContractProduct>{
+public class ExtCproductAction extends BaseAction implements ModelDriven<ExtCproduct>{
 
     private Pagination page = new Pagination();
 
     @Autowired
-    private ContractProductService contractProductService;
+    private ExtCproductService extCproductService;
     @Autowired
     private FactoryService factoryService;
 
-    private List<ContractProduct> contractProductList;
+    private List<ExtCproduct> extCproductList;
     private List<Factory> factoryList;
 
-    private ContractProduct model = new ContractProduct();
+    private ExtCproduct model = new ExtCproduct();
 
     public String insert(){
-        contractProductService.insert(model);
+        extCproductService.insert(model);
         return tocreate();
     }
 
 /*    public String list(){
-        page = contractProductService.findByPage(page, model.getContract().getId());
-        page.setUrl("contractProductAction_list");
+        page = extCproductService.findByPage(page);
+        page.setUrl("extCproductAction_list");
         push(page);
         return "list";
     }*/
     public String tocreate(){
-        String type = "货物";
+        //extCproductList = extCproductService.findAll();
+        String type = "附件";
         factoryList = factoryService.findByType(type);
-        page = contractProductService.findByPage(page,model.getContract().getId());
-        page.setUrl("contractProductAction_tocreate");
+        page = extCproductService.findByPage(page,model.getContractProduct().getId());
+        page.setUrl("extCproductAction_list");
         push(page);
         return "tocreate";
     }
     public String toupdate(){
-        String type = "货物";
+        extCproductList = extCproductService.findAll();
+        String type = "附件";
         factoryList = factoryService.findByType(type);
-        contractProductList = contractProductService.findAll();
-        model = contractProductService.findById(model.getId());
-        contractProductList.remove(model);
+        model = extCproductService.findById(model.getId());
+        extCproductList.remove(model);
         push(model);
         return "toupdate";
     }
     public String update(){
-        contractProductService.update(model);
+        extCproductService.update(model);
         return tocreate();
     }
 
     public String delete(){
-        contractProductService.delete(model.getId());
+        extCproductService.delete(model.getId());
         return tocreate();
     }
 
 /*    public String toview(){
-        model = contractProductService.findById(model.getId());
+        model = extCproductService.findById(model.getId());
         push(model);
         return "toview";
     }*/
@@ -85,16 +86,16 @@ public class ContractProductAction extends BaseAction implements ModelDriven<Con
         this.page = page;
     }
 
-    public List<ContractProduct> getContractProductList() {
-        return contractProductList;
+    public List<ExtCproduct> getExtCproductList() {
+        return extCproductList;
+    }
+
+    @Override
+    public ExtCproduct getModel() {
+        return model;
     }
 
     public List<Factory> getFactoryList() {
         return factoryList;
-    }
-
-    @Override
-    public ContractProduct getModel() {
-        return model;
     }
 }

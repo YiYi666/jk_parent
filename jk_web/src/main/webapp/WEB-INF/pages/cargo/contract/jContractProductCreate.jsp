@@ -56,7 +56,7 @@
 	        </tr>		
 	        <tr>
 	            <td class="columnTitle">数量：</td>
-	            <td class="tableContent"><input type="text" name="cnumber" value=""/></td>
+	            <td class="tableContent"><input type="text" required name="cnumber" value=""/></td>
 	            <td class="columnTitle">包装单位：</td>
 	            <td class="tableContentAuto">
 	            	<input type="radio" name="packingUnit" value="PCS" class="input">只
@@ -71,7 +71,7 @@
 	        </tr>		
 	        <tr>
 	            <td class="columnTitle">单价：</td>
-	            <td class="tableContent"><input type="text" name="price" value=""/></td>
+	            <td class="tableContent"><input type="text" required name="price" value=""/></td>
 	            <td class="columnTitle">排序号：</td>
 	            <td class="tableContent"><input type="text" name="orderNo" value=""/></td>
 	        </tr>		

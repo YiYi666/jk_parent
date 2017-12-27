@@ -16,7 +16,7 @@ public interface ContractProductService {
 
     void update(ContractProduct model);
 
-    void delete(String[] ids);
+    void delete(String ids);
 
 
 }

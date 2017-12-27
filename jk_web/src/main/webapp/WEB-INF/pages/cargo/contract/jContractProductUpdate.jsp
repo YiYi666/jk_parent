@@ -41,7 +41,7 @@
 	        <tr>
 	            <td class="columnTitle">生产厂家：</td>
 	            <td class="tableContent">
-	            	 <s:select name="factory.id" list="factoryList" 
+	            	 <s:select name="factory.id" list="factoryList"
 	            				onchange="setFactoryName(this.options[this.selectedIndex].text);"
 	            				listKey="id" listValue="factoryName" 
 	            				headerKey="" headerValue="--请选择--"/>
@@ -56,7 +56,7 @@
 	        </tr>		
 	        <tr>
 	            <td class="columnTitle">数量：</td>
-	            <td class="tableContent"><input type="text" name="cnumber" value="${cnumber }"/>  
+	            <td class="tableContent"><input type="text"  name="cnumber" required value="${cnumber }"/>
 	                <input type="hidden" name="amount" value="${amount }"/>
 	            </td>
 	            <td class="columnTitle">包装单位：</td>
@@ -73,7 +73,7 @@
 	        </tr>		
 	        <tr>
 	            <td class="columnTitle">单价：</td>
-	            <td class="tableContent"><input type="text" name="price" value="${price }"/></td>
+	            <td class="tableContent"><input type="text" required name="price" value="${price }"/></td>
 	            <td class="columnTitle">排序号：</td>
 	            <td class="tableContent"><input type="text" name="orderNo" value="${orderNo }"/></td>
 	        </tr>		

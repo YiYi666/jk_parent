@@ -6,10 +6,12 @@ import org.springframework.transaction.annotation.Transactional;
 import top.greathead.jk.dao.BaseDao;
 import top.greathead.jk.entity.Contract;
 import top.greathead.jk.entity.ContractProduct;
+import top.greathead.jk.entity.ExtCproduct;
 import top.greathead.jk.service.ContractProductService;
 import top.greathead.jk.utils.Pagination;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -19,6 +21,8 @@ public class ContractProductServiceImpl implements ContractProductService {
     private BaseDao<ContractProduct,String> contractProductDao;
     @Autowired
     private BaseDao<Contract,String> contractDao;
+    @Autowired
+    private  BaseDao<ExtCproduct,String> extCproductDao;
 
     @Override
     @Transactional(readOnly = true)
@@ -52,6 +56,7 @@ public class ContractProductServiceImpl implements ContractProductService {
         ContractProduct contractProduct = contractProductDao.get(ContractProduct.class, model.getId());
         model.setAmount(updateAmount);
         Long cutAmount = updateAmount - contractProduct.getAmount();
+        model.setExtCproducts(contractProduct.getExtCproducts());
         contractProductDao.evict(contractProduct);
         contractProductDao.update(model);
         calculatePrice(model,cutAmount);
@@ -65,10 +70,20 @@ public class ContractProductServiceImpl implements ContractProductService {
     }
 
     @Override
-    public void delete(String[] ids) {
-        for (String id : ids) {
-            contractProductDao.deleteById(ContractProduct.class,id);
+    public void delete(String id) {
+        ContractProduct contractProduct = contractProductDao.get(ContractProduct.class, id);
+
+        Contract contract = contractDao.get(Contract.class, contractProduct.getContract().getId());
+
+        Set<ExtCproduct> extCproducts = contractProduct.getExtCproducts();
+        Long amount = 0L;
+        for(ExtCproduct extCproduct : extCproducts){
+            amount+=extCproduct.getAmount();
         }
+        contract.setTotalAmount(contract.getTotalAmount()-contractProduct.getAmount()-amount);
+
+        contractProductDao.deleteById(ContractProduct.class,id);
+        contractDao.update(contract);
     }
 
 
