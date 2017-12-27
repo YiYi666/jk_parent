@@ -21,7 +21,7 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="save"><a href="#" onclick="formSubmit('contractProductAction_insert','_self');this.blur();">保存</a></li>
+<li id="save" value="contractProductAction_insert"><a href="#">保存</a></li>
 <li id="back"><a href="#" onclick="history.go(-1);">返回</a></li>
 </ul>
   </div>
@@ -143,13 +143,10 @@
 		<td>${ext.amount}</td>
 	</tr>
 	</c:forEach>
-	
-	</c:forEach> 
-	
+	</c:forEach>
 	</tbody>
 </table>
-</div> 
- 
+</div>
 </form>
 </body>
 </html>

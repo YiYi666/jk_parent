@@ -22,7 +22,7 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="save"><a href="#" onclick="formSubmit('contractProductAction_update','_self');this.blur();">保存</a></li>
+<li id="save" value="contractProductAction_update"><a href="#">保存</a></li>
 <li id="back"><a href="#" onclick="history.go(-1);">返回</a></li>
 </ul>
   </div>
