@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title></title>
-	<script type="text/javascript" src="${ctx }/js/datepicker/WdatePicker.js""></script>
+	<script type="text/javascript" src="${ctx }/js/datepicker/WdatePicker.js"></script>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="save"><a href="#" onclick="formSubmit('contractAction_insert','_self');this.blur();">保存</a></li>
+<li id="save" value="contractAction_insert"><a href="#">保存</a></li>
 <li id="back"><a href="#" onclick="history.go(-1);">返回</a></li>
 </ul>
   </div>
@@ -61,7 +61,7 @@
 	            <td class="tableContent"><input type="text" name="inspector" value=""/></td>
 	            <td class="columnTitle">签单日期：</td>
 	            <td class="tableContent">
-					<input type="text" style="width:90px;" name="signingDate"
+					<input type="text" style="width:90px;" name="signingDate" required
 	            	 value=""
 	             	onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});"/>
 				</td>
@@ -75,7 +75,7 @@
 	            </td>
 	            <td class="columnTitle">船期：</td>
 	            <td class="tableContent">
-					<input type="text" style="width:90px;" name="shipTime"
+					<input type="text" style="width:90px;" name="shipTime" required
 	            	 value=""
 	             	onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});"/>
 				</td>
@@ -85,7 +85,7 @@
 	            <td class="tableContent"><input type="text" name="tradeTerms" value=""/></td>
 	            <td class="columnTitle">交货期限：</td>
 	            <td class="tableContent">
-					<input type="text" style="width:90px;" name="deliveryPeriod"
+					<input type="text" style="width:90px;" name="deliveryPeriod" required
 	            	 value=""
 	             	onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});"/>
 				</td>
@@ -98,8 +98,7 @@
 	        </tr>		
 		</table>
 	</div>
- 
- 
+</div>
 </form>
 </body>
 </html>

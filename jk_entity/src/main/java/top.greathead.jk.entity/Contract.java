@@ -9,7 +9,7 @@ public class Contract extends BaseEntity{
     private String id;
     private String offeror;
     private String contractNo;
-    private Time signingDate;
+    private Date signingDate;
     private String inputBy;
     private String checkBy;
     private String inspector;
@@ -53,11 +53,11 @@ public class Contract extends BaseEntity{
         this.contractNo = contractNo;
     }
 
-    public Time getSigningDate() {
+    public Date getSigningDate() {
         return signingDate;
     }
 
-    public void setSigningDate(Time signingDate) {
+    public void setSigningDate(Date signingDate) {
         this.signingDate = signingDate;
     }
 
