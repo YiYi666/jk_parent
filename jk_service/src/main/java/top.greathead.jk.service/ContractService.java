@@ -17,4 +17,6 @@ public interface ContractService {
     void update(Contract model);
 
     void delete(String[] ids);
+
+    void updateState(String id, Long state);
 }

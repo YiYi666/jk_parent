@@ -86,5 +86,9 @@ public class ContractProductServiceImpl implements ContractProductService {
         contractDao.update(contract);
     }
 
+    @Override
+    public List<ContractProduct> findOutProduct(String inputDate) {
 
+        return contractProductDao.getListByHQL("from ContractProduct where contract.state = 1 and to_char(contract.shipTime,'yyyy-mm') = ?",inputDate);
+    }
 }

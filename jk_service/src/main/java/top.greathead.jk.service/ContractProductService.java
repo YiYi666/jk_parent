@@ -19,4 +19,5 @@ public interface ContractProductService {
     void delete(String ids);
 
 
+    List<ContractProduct> findOutProduct(String inputDate);
 }

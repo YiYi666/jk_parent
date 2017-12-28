@@ -66,6 +66,12 @@ public class ContractAction extends BaseAction implements ModelDriven<Contract>{
         return "toview";
     }
 
+    public String submit(){
+        Long state = 1L;
+        contractService.updateState(model.getId(),state);
+        return "rlist";
+    }
+
     public Pagination getPage() {
         return page;
     }
