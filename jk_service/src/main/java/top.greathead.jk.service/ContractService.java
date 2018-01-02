@@ -19,4 +19,6 @@ public interface ContractService {
     void delete(String[] ids);
 
     void updateState(String id, Long state);
+
+    Pagination findByPage(Pagination page, Long state);
 }

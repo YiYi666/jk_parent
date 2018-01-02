@@ -71,4 +71,9 @@ public class ContractServiceImpl implements ContractService {
 
         contractDao.update(contract);
     }
+
+    @Override
+    public Pagination findByPage(Pagination page, Long state) {
+        return contractDao.pageByHql("from Contract where state = ?" ,page.getPageNo(),page.getPageSize() , state);
+    }
 }
