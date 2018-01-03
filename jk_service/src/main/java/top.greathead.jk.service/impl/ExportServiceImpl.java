@@ -98,7 +98,6 @@ public class ExportServiceImpl implements ExportService {
             if(!mr_changed[i].isEmpty()){
                 ExportProduct exportProduct = exportProductDao.get(ExportProduct.class, mr_id[i]);
                 exportProduct.setCnumber(toLong(mr_cnumber[i]));
-               // exportProduct.setOrderNo(toLong(mr_orderNo[i]));
                 exportProduct.setGrossWeight(toLong(mr_grossWeight[i]));
                 exportProduct.setNetWeight(toLong(mr_netWeight[i]));
                 exportProduct.setSizeLength(toLong(mr_sizeLength[i]));
@@ -112,7 +111,7 @@ public class ExportServiceImpl implements ExportService {
         Export export = exportDao.get(Export.class, model.getId());
         model.setExportProducts(export.getExportProducts());
         exportDao.evict(export);
-        model.setState(0L);
+        model.setState(export.getState());
         exportDao.update(model);
     }
 

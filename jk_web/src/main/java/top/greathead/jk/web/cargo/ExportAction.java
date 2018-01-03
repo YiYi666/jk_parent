@@ -82,9 +82,6 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
     }
     public String update(){
 
-
-
-
         exportService.update(model,mr_id,mr_changed,mr_orderNo,mr_cnumber,
                 mr_grossWeight,mr_netWeight,mr_sizeLength,mr_sizeWidth,mr_sizeHeight,mr_exPrice,mr_tax);
 

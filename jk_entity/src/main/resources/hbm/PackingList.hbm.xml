@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="top.greathead.jk.entity.PackingList" table="PACKING_LIST_C" schema="JK">
+        <id name="id" column="PACKING_LIST_ID">
+            <generator class="uuid"/>
+        </id>
+        <property name="seller" column="SELLER"/>
+        <property name="buyer" column="BUYER"/>
+        <property name="invoiceNo" column="INVOICE_NO"/>
+        <property name="invoiceDate" column="INVOICE_DATE"/>
+        <property name="marks" column="MARKS"/>
+        <property name="descriptions" column="DESCRIPTIONS"/>
+        <property name="exportIds" column="EXPORT_IDS"/>
+        <property name="exportNos" column="EXPORT_NOS"/>
+        <property name="state" column="STATE"/>
+        <property name="createBy" column="CREATE_BY"/>
+        <property name="createDept" column="CREATE_DEPT"/>
+        <property name="createTime" column="CREATE_TIME"/>
+    </class>
+</hibernate-mapping>
