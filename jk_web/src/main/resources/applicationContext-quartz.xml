@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!-- 配置Job的bean -->
+
+    <bean id="myJob" class="top.greathead.jk.web.job.MailJob" />
+
+    <!-- 配置jobDetail -->
+    <bean id="myJobDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 用到的Job实例 -->
+        <property name="targetObject">
+            <ref bean="myJob"/>
+        </property>
+        <!-- Job实例中的方法 -->
+        <property name="targetMethod">
+            <value>sendMail</value>
+        </property>
+    </bean>
+
+    <!-- 配置触发器Trigger -->
+    <bean id="myTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="work_default_name"/>
+        <property name="group" value="work_default"/>
+        <property name="jobDetail">
+            <ref bean="myJobDetail"/>
+        </property>
+        <property name="cronExpression">
+            <!--每日15点定时发送-->
+            <value>0 0 15 * * ?</value>
+        </property>
+    </bean>
+
+    <!-- 配置scheduler工厂 -->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="myTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

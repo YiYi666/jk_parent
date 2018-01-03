@@ -21,4 +21,6 @@ public interface ContractService {
     void updateState(String id, Long state);
 
     Pagination findByPage(Pagination page, Long state);
+
+    List<Contract> findListbyDeliveryPeriod(String now);
 }

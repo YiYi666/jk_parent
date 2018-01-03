@@ -76,4 +76,9 @@ public class ContractServiceImpl implements ContractService {
     public Pagination findByPage(Pagination page, Long state) {
         return contractDao.pageByHql("from Contract where state = ?" ,page.getPageNo(),page.getPageSize() , state);
     }
+
+    @Override
+    public List<Contract> findListbyDeliveryPeriod(String now) {
+        return contractDao.getListByHQL("from Contract where state = 2 and to_char(deliveryPeriod,'yyyy-mm-dd')=?", now);
+    }
 }
