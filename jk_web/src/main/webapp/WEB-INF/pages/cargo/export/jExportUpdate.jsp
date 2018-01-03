@@ -10,12 +10,32 @@
 
     <script language="JavaScript">
         $().ready(function () {
-            ${mRecordData}
+            //${mRecordData}
             //发送ajax请求-------------返回json------------后面就去组织数据（调用函数）
             //当进入更新页面时-----------直接获取服务器返回的串
-
-
+            //addTRRecord("mRecordTable",'1','1','1','1','2','1','1','1','1','1');
+            $.ajax({
+                url:"${ctx}/cargo/exportAction_getJsonStr?id=${id}",
+                type:"get",
+                success:function (data) {
+                    var datas = eval("(" + data + ")");
+                    for(var i=0;i<datas.length;i++){
+                        var data = datas[i];
+                        addTRRecord("mRecordTable",toEmpty (data.id),toEmpty (data.productNo),
+                            toEmpty (data.cnumber),toEmpty (data.grossWeight),toEmpty (data.netWeight),
+                            toEmpty (data.sizeLength),toEmpty (data.sizeWidth),toEmpty (data.sizeHeight),
+                            toEmpty (data.exPrice),toEmpty (data.tax));
+                    }
+                    $("#mRecordTable").find(":text").blur(function () {
+                        setTRUpdateFlag(this);
+                    })
+                }
+            })
         });
+
+        function toEmpty (data) {
+            return data==undefined?"":data;
+        }
 
 
         /* 实现表格序号列自动调整 created by wyj 20081219 */

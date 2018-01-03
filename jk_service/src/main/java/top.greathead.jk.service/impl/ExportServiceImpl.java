@@ -23,6 +23,10 @@ public class ExportServiceImpl implements ExportService {
 
     @Autowired
     private BaseDao<Contract,String> contractDao;
+
+    @Autowired
+    private BaseDao<ExportProduct,String> exportProductDao;
+
     @Override
     @Transactional(readOnly = true)
     public Pagination findByPage(Pagination page) {
@@ -87,13 +91,35 @@ public class ExportServiceImpl implements ExportService {
     }
 
     @Override
-    public void update(Export model) {
+    public void update(Export model, String[] mr_id, String[] mr_changed, String[] mr_orderNo,
+                       String[] mr_cnumber, String[] mr_grossWeight, String[] mr_netWeight, String[] mr_sizeLength,
+                       String[] mr_sizeWidth, String[] mr_sizeHeight, String[] mr_exPrice, String[] mr_tax) {
+        for(int i=0; i<mr_changed.length; i++){
+            if(!mr_changed[i].isEmpty()){
+                ExportProduct exportProduct = exportProductDao.get(ExportProduct.class, mr_id[i]);
+                exportProduct.setCnumber(toLong(mr_cnumber[i]));
+               // exportProduct.setOrderNo(toLong(mr_orderNo[i]));
+                exportProduct.setGrossWeight(toLong(mr_grossWeight[i]));
+                exportProduct.setNetWeight(toLong(mr_netWeight[i]));
+                exportProduct.setSizeLength(toLong(mr_sizeLength[i]));
+                exportProduct.setSizeWidth(toLong(mr_sizeWidth[i]));
+                exportProduct.setSizeHeight(toLong(mr_sizeHeight[i]));
+                exportProduct.setExPrice(toLong(mr_exPrice[i]));
+                exportProduct.setTax(toLong(mr_tax[i]));
+                exportProductDao.update(exportProduct);
+            }
+        }
         Export export = exportDao.get(Export.class, model.getId());
         model.setExportProducts(export.getExportProducts());
         exportDao.evict(export);
         model.setState(0L);
         exportDao.update(model);
     }
+
+    private Long toLong (String data){
+        return data.isEmpty()? null : Long.valueOf(data);
+    }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -131,5 +157,10 @@ public class ExportServiceImpl implements ExportService {
     @Override
     public Pagination findByPage(Pagination page, Long state) {
         return exportDao.pageByHql("from Export where state = ?" ,page.getPageNo(),page.getPageSize() , state);
+    }
+
+    @Override
+    public List<ExportProduct> fingExportProductByExportId(String id) {
+        return exportProductDao.getListByHQL("from ExportProduct where export.id = ?",id);
     }
 }

@@ -23,6 +23,7 @@
         <property name="orderNo" column="ORDER_NO"/>
 
         <many-to-one name="factory" class="top.greathead.jk.entity.Factory" column="FACTORY_ID"/>
+        <many-to-one name="export" class="top.greathead.jk.entity.Export" column="EXPORT_ID"/>
 
         <set name="extEproducts" cascade="all-delete-orphan">
             <key column="EXPORT_PRODUCT_ID"></key>

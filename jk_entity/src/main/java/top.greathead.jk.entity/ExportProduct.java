@@ -1,5 +1,7 @@
 package top.greathead.jk.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,8 +9,10 @@ import java.util.Set;
 public class ExportProduct implements Serializable {
     private String id;
     private String productNo;
+    @JSONField(serialize = false)
     private String packingUnit;
     private Long cnumber;
+    @JSONField(serialize = false)
     private Long boxNum;
     private Long grossWeight;
     private Long netWeight;
@@ -16,13 +20,18 @@ public class ExportProduct implements Serializable {
     private Long sizeWidth;
     private Long sizeHeight;
     private Long exPrice;
+    @JSONField(serialize = false)
     private Long price;
     private Long tax;
+    @JSONField(serialize = false)
     private Long orderNo;
-
+    @JSONField(serialize = false)
     private Set<ExtEproduct> extEproducts = new HashSet<>();
-
+    @JSONField(serialize = false)
     private Factory factory;
+    @JSONField(serialize = false)
+    private Export export;
+
 
 
     public String getId() {
@@ -151,5 +160,13 @@ public class ExportProduct implements Serializable {
 
     public void setFactory(Factory factory) {
         this.factory = factory;
+    }
+
+    public Export getExport() {
+        return export;
+    }
+
+    public void setExport(Export export) {
+        this.export = export;
     }
 }
