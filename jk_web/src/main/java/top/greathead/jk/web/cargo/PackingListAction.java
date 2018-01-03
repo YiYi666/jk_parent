@@ -35,7 +35,7 @@ public class PackingListAction extends BaseAction implements ModelDriven<Packing
     public String insert(){
 
         packingListService.insert(model);
-        return "rlist";
+        return list();
     }
 
     public String list(){
@@ -45,17 +45,16 @@ public class PackingListAction extends BaseAction implements ModelDriven<Packing
         return "list";
     }
     public String tocreate(){
-        //page = packingListService.findByPage(page);
-        //packingListList = packingListService.findAll();
-        page = exportService.findByPage(page);
-        page.setUrl("exportAction_list");
+        Long state = 1L;
+        page = exportService.findByPage(page,state);
+        page.setUrl("packingListAction_tocreate");
         push(page);
         return "tocreate";
     }
     public String toupdate(){
-        packingListList = packingListService.findAll();
+       // packingListList = packingListService.findAll();
         model = packingListService.findById(model.getId());
-        packingListList.remove(model);
+       // packingListList.remove(model);
         push(model);
         return "toupdate";
     }
