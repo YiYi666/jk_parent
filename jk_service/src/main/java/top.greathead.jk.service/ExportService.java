@@ -15,7 +15,7 @@ public interface ExportService {
 
     Export findById(String id);
 
-    void update(Export model, String[] mr_id, String[] mr_changed, String[] mr_orderNo, String[] mr_cnumber, String[] mr_grossWeight, String[] mr_netWeight, String[] mr_sizeLength, String[] mr_sizeWidth, String[] mr_sizeHeight, String[] mr_exPrice, String[] mr_tax);
+    void update(Export model);
 
     void delete(String[] ids);
 
@@ -24,4 +24,6 @@ public interface ExportService {
     Pagination findByPage(Pagination page, Long state);
 
     List<ExportProduct> fingExportProductByExportId(String id);
+
+    void updateEP(ExportProduct ep);
 }

@@ -90,7 +90,7 @@ public class ExportServiceImpl implements ExportService {
         exportDao.save(model);
     }
 
-    @Override
+/*    @Override
     public void update(Export model, String[] mr_id, String[] mr_changed, String[] mr_orderNo,
                        String[] mr_cnumber, String[] mr_grossWeight, String[] mr_netWeight, String[] mr_sizeLength,
                        String[] mr_sizeWidth, String[] mr_sizeHeight, String[] mr_exPrice, String[] mr_tax) {
@@ -108,6 +108,15 @@ public class ExportServiceImpl implements ExportService {
                 exportProductDao.update(exportProduct);
             }
         }
+        Export export = exportDao.get(Export.class, model.getId());
+        model.setExportProducts(export.getExportProducts());
+        exportDao.evict(export);
+        model.setState(export.getState());
+        exportDao.update(model);
+    }*/
+
+    @Override
+    public void update(Export model) {
         Export export = exportDao.get(Export.class, model.getId());
         model.setExportProducts(export.getExportProducts());
         exportDao.evict(export);
@@ -161,5 +170,19 @@ public class ExportServiceImpl implements ExportService {
     @Override
     public List<ExportProduct> fingExportProductByExportId(String id) {
         return exportProductDao.getListByHQL("from ExportProduct where export.id = ?",id);
+    }
+
+    @Override
+    public void updateEP(ExportProduct ep) {
+        ExportProduct exportProduct = exportProductDao.get(ExportProduct.class, ep.getId());
+        exportProduct.setCnumber(ep.getCnumber());
+        exportProduct.setGrossWeight(ep.getGrossWeight());
+        exportProduct.setNetWeight(ep.getNetWeight());
+        exportProduct.setSizeLength(ep.getSizeLength());
+        exportProduct.setSizeWidth(ep.getSizeWidth());
+        exportProduct.setSizeHeight(ep.getSizeHeight());
+        exportProduct.setExPrice(ep.getExPrice());
+        exportProduct.setTax(ep.getTax());
+        exportProductDao.update(exportProduct);
     }
 }

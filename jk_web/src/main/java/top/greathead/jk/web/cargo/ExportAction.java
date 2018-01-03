@@ -49,6 +49,7 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
 
 
     private List<Export> exportList;
+    private ExportProduct ep;
 
     private Export model = new Export();
 
@@ -82,10 +83,12 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
     }
     public String update(){
 
-        exportService.update(model,mr_id,mr_changed,mr_orderNo,mr_cnumber,
-                mr_grossWeight,mr_netWeight,mr_sizeLength,mr_sizeWidth,mr_sizeHeight,mr_exPrice,mr_tax);
-
+        exportService.update(model);
         return list();
+    }
+
+    public void updateExportProduct(){
+        exportService.updateEP(ep);
     }
 
     public String delete(){
@@ -223,5 +226,13 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
 
     public void setMr_tax(String[] mr_tax) {
         this.mr_tax = mr_tax;
+    }
+
+    public ExportProduct getEp() {
+        return ep;
+    }
+
+    public void setEp(ExportProduct ep) {
+        this.ep = ep;
     }
 }

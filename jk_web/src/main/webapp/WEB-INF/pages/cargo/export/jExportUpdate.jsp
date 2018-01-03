@@ -15,26 +15,52 @@
             //当进入更新页面时-----------直接获取服务器返回的串
             //addTRRecord("mRecordTable",'1','1','1','1','2','1','1','1','1','1');
             $.ajax({
-                url:"${ctx}/cargo/exportAction_getJsonStr?id=${id}",
-                type:"get",
-                success:function (data) {
+                url: "${ctx}/cargo/exportAction_getJsonStr?id=${id}",
+                type: "get",
+                success: function (data) {
                     var datas = eval("(" + data + ")");
-                    for(var i=0;i<datas.length;i++){
+                    for (var i = 0; i < datas.length; i++) {
                         var data = datas[i];
-                        addTRRecord("mRecordTable",toEmpty (data.id),toEmpty (data.productNo),
-                            toEmpty (data.cnumber),toEmpty (data.grossWeight),toEmpty (data.netWeight),
-                            toEmpty (data.sizeLength),toEmpty (data.sizeWidth),toEmpty (data.sizeHeight),
-                            toEmpty (data.exPrice),toEmpty (data.tax));
+                        addTRRecord("mRecordTable", toEmpty(data.id), toEmpty(data.productNo),
+                            toEmpty(data.cnumber), toEmpty(data.grossWeight), toEmpty(data.netWeight),
+                            toEmpty(data.sizeLength), toEmpty(data.sizeWidth), toEmpty(data.sizeHeight),
+                            toEmpty(data.exPrice), toEmpty(data.tax));
                     }
                     $("#mRecordTable").find(":text").blur(function () {
-                        setTRUpdateFlag(this);
+                        //setTRUpdateFlag(this);
+                        var tr = $(this).parent().parent();
+
+
+                        var id = tr.find("[name='mr_id']").val();
+                        var orderNo = tr.find("[name='mr_orderNo']").val();
+                        //var productNo = tr.find("[name='']").val();
+                        var cnumber = tr.find("[name='mr_cnumber']").val();
+                        var grossWeight = tr.find("[name='mr_grossWeight']").val();
+                        var netWeight = tr.find("[name='mr_netWeight']").val();
+                        var sizeLength = tr.find("[name='mr_sizeLength']").val();
+                        var sizeWidth = tr.find("[name='mr_sizeWidth']").val();
+                        var sizeHeight = tr.find("[name='mr_sizeHeight']").val();
+                        var exPrice = tr.find("[name='mr_exPrice']").val();
+                        var tax = tr.find("[name='mr_tax']").val();
+
+                        $.ajax({
+                            url:"${ctx}/cargo/exportAction_updateExportProduct",
+                            data:"ep.id="+id+"&ep.orderNo="+orderNo+"&ep.cnumber="+cnumber+
+                                "&ep.grossWeight="+grossWeight+"&ep.netWeight="+netWeight+
+                                "&ep.sizeLength="+sizeLength+"&ep.sizeWidth="+sizeWidth+
+                                "&ep.sizeHeight="+sizeHeight+"&ep.exPrice="+exPrice+"&ep.tax="+tax,
+                            type:"get",
+                            success:function () {
+                                $("#msg").text("已下货物数据已于 " + new Date().toLocaleString() +" 实时更新");
+                            }
+                        })
                     })
                 }
             })
         });
 
-        function toEmpty (data) {
-            return data==undefined?"":data;
+        function toEmpty(data) {
+            return data == undefined ? "" : data;
         }
 
 
@@ -160,39 +186,40 @@
             </tr>
         </table>
     </div>
+</form>
+<div id="msg" style="text-align: center;color: blue; font-size: 14px;"></div>
+<div class="listTablew">
+    <table class="commonTable_main" cellSpacing="1" id="mRecordTable">
+        <tr class="rowTitle" align="middle">
+            <td width="25" title="可以拖动下面行首,实现记录的位置移动.">
+                <img src="${ctx }/images/drag.gif">
+            </td>
+            <td width="20">
+                <input class="input" type="checkbox" name="ck_del" onclick="checkGroupBox(this);"/>
+            </td>
+            <td width="33">序号</td>
+            <td>货号</td>
+            <td>数量</td>
+            <td>毛重</td>
+            <td>净重</td>
+            <td>长</td>
+            <td>宽</td>
+            <td>高</td>
+            <td>出口单价</td>
+            <td>含税</td>
+        </tr>
+    </table>
+</div>
 
-    <div class="listTablew">
-        <table class="commonTable_main" cellSpacing="1" id="mRecordTable">
-            <tr class="rowTitle" align="middle">
-                <td width="25" title="可以拖动下面行首,实现记录的位置移动.">
-                    <img src="${ctx }/images/drag.gif">
-                </td>
-                <td width="20">
-                    <input class="input" type="checkbox" name="ck_del" onclick="checkGroupBox(this);"/>
-                </td>
-                <td width="33">序号</td>
-                <td>货号</td>
-                <td>数量</td>
-                <td>毛重</td>
-                <td>净重</td>
-                <td>长</td>
-                <td>宽</td>
-                <td>高</td>
-                <td>出口单价</td>
-                <td>含税</td>
-            </tr>
-        </table>
-    </div>
 
-
-    <div class="textbox-bottom">
+<%--    <div class="textbox-bottom">
         <div class="textbox-inner-bottom">
             <div class="textbox-go-top">
             </div>
         </div>
-    </div>
+    </div>--%>
 
-</form>
+
 </body>
 </html>
 
