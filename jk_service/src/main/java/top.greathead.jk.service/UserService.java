@@ -22,4 +22,6 @@ public interface UserService {
     void updateRoles(String id, String[] roleIds);
 
     User findUserByUserName(String username);
+
+    List<Object[]> findOnlineInfo();
 }

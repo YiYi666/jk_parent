@@ -19,4 +19,8 @@ public interface FactoryService {
     void delete(String[] ids);
 
     List<Factory> findByType(String type);
+
+    List<Object[]> findFactorySale();
+
+    List<Object[]> findProductSale();
 }

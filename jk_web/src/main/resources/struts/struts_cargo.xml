@@ -41,6 +41,13 @@
             <result name="toview">/WEB-INF/pages/cargo/packinglist/jPackingListView.jsp</result>
             <result name="rlist" type="redirectAction">packingListAction_list</result>
         </action>
+      <!--  <action name="shippingOrderAction_*" class="shippingOrderAction" method="{1}">
+            <result name="list">/WEB-INF/pages/cargo/packinglist/jPackingListListPage.jsp</result>
+            <result name="tocreate">/WEB-INF/pages/cargo/packinglist/jPackingListCreate.jsp</result>
+            <result name="toupdate">/WEB-INF/pages/cargo/packinglist/jPackingListUpdate.jsp</result>
+            <result name="toview">/WEB-INF/pages/cargo/packinglist/jPackingListView.jsp</result>
+            <result name="rlist" type="redirectAction">packingListAction_list</result>
+        </action>-->
 
     </package>
 

@@ -1,6 +1,9 @@
 package top.greathead.jk.service.impl;
 
 import org.apache.log4j.Logger;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,12 +27,14 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private BaseDao<User,String> userDao;
-
     @Autowired
     private RoleService roleService;
-
     @Autowired
     private MailUtils mailUtils;
+    @Autowired
+    private SessionFactory sessionFactory;
+
+
 
     private Logger logger = Logger.getLogger(UserServiceImpl.class);
 
@@ -126,5 +131,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByUserName(String username) {
         return  userDao.getByHQL("from User where user_name = ?", username);
+    }
+
+    @Override
+    public List<Object[]> findOnlineInfo() {
+        Session session = sessionFactory.openSession();
+        SQLQuery sqlQuery = session.createSQLQuery("SELECT b.a1, nvl(countnum , 0) from (SELECT A1 from ONLINE_INFO_T) b\n" +
+                "  LEFT JOIN\n" +
+                "  (select TO_CHAR(LOGIN_TIME,'hh24') h,count(TO_CHAR(LOGIN_TIME,'hh24')) countnum from LOGIN_LOG_P group by TO_CHAR(LOGIN_TIME,'hh24')) s\n" +
+                "  on b.A1 = s.h ORDER BY b.a1");
+        List list = sqlQuery.list();
+        session.close();
+        return list;
     }
 }

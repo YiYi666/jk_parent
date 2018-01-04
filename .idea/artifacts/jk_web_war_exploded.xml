@@ -19,6 +19,9 @@
           <element id="archive" name="jk_entity-1.0-SNAPSHOT.jar">
             <element id="module-output" name="jk_entity" />
           </element>
+          <element id="archive" name="jk_ws-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="jk_ws" />
+          </element>
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.4" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />

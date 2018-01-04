@@ -1,7 +1,13 @@
 package top.greathead.jk.web.cargo;
 
+import com.alibaba.fastjson.JSON;
 import com.opensymphony.xwork2.ModelDriven;
+import com.yaorange.webservice.EpService;
+import com.yaorange.webservice.Exception_Exception;
+import com.yaorange.webservice.ExportEResponse;
+import com.yaorange.webservice.ExportResult;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -16,7 +22,11 @@ import top.greathead.jk.web.BaseAction;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static oracle.net.aso.C05.e;
 
 /**
  * @author coach tam
@@ -32,6 +42,8 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
     private ExportService exportService;
     @Autowired
     private ContractService contractService;
+    @Autowired
+    private EpService epService;
 
 
     private String[] mr_id;
@@ -113,6 +125,32 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
         Long exportState = 0L;
         Long contractState = 1L;
         exportService.updateState(model,exportState,contractState);
+        return list();
+    }
+    public String export(){
+        Export export = exportService.findById(model.getId());
+        com.yaorange.webservice.Export ex = new com.yaorange.webservice.Export();
+        BeanUtils.copyProperties(ex,export);
+        ex.setExportId(export.getId());
+        Set<ExportProduct> exportProducts = export.getExportProducts();
+        Set<com.yaorange.webservice.ExportProduct> epSet = new HashSet<>();
+        for (ExportProduct exportProduct:exportProducts) {
+            com.yaorange.webservice.ExportProduct ep = new com.yaorange.webservice.ExportProduct();
+            BeanUtils.copyProperties(ep,exportProduct);
+            ep.setExportProductId(exportProduct.getId());
+            epSet.add(ep);
+        }
+        ex.setProducts(epSet);
+        String json = FastJsonUtil.toJSONString(ex);
+        try {
+            String exportE = epService.exportE(json);
+            ExportResult exportResult = JSON.parseObject(exportE, ExportResult.class);
+            String remark = exportResult.getRemark();
+            System.out.println(remark);
+            //TODO
+        } catch (Exception_Exception e) {
+            e.printStackTrace();
+        }
         return list();
     }
 

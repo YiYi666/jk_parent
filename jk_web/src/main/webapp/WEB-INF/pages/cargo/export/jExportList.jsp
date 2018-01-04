@@ -20,6 +20,7 @@
 <li id="delete"><a href="#" onclick="formSubmit('exportAction_delete','_self');this.blur();">删除</a></li>
 <li id="new"><a href="#" onclick="formSubmit('exportAction_submit','_self');this.blur();">提交</a></li>
 <li id="new"><a href="#" onclick="formSubmit('exportAction_cancel','_self');this.blur();">取消</a></li>
+<li id="new"><a href="#" onclick="formSubmit('exportAction_export','_self');this.blur();">报运</a></li>
 </ul>
   </div>
 </div>

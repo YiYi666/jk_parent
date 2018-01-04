@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/jk_service/jk_service.iml" filepath="$PROJECT_DIR$/jk_service/jk_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/jk_utils/jk_utils.iml" filepath="$PROJECT_DIR$/jk_utils/jk_utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/jk_web/jk_web.iml" filepath="$PROJECT_DIR$/jk_web/jk_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jk_ws/jk_ws.iml" filepath="$PROJECT_DIR$/jk_ws/jk_ws.iml" />
     </modules>
   </component>
 </project>
