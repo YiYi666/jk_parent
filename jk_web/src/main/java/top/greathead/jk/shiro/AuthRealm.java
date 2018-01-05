@@ -8,6 +8,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import top.greathead.jk.entity.Role;
 import top.greathead.jk.entity.User;
+import top.greathead.jk.entity.UserInfo;
 import top.greathead.jk.service.UserService;
 
 

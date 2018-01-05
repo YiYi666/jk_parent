@@ -53,7 +53,7 @@ public class ExportServiceImpl implements ExportService {
             Contract contract = contractDao.get(Contract.class, contractId);
             contract.setState(2L);
             Set<ContractProduct> contractProducts = contract.getContractProducts();
-           // Set<ExportProduct> exportProducts = model.getExportProducts();
+            // Set<ExportProduct> exportProducts = model.getExportProducts();
             customerContract = customerContract +" " + contract.getContractNo();
 
             for(ContractProduct contractProduct:contractProducts){
