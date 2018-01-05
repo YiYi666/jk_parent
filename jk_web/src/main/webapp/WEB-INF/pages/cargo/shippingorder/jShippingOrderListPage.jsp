@@ -57,7 +57,7 @@ ${page.links}
     <td>${o.id}</td>
     <td>${o.orderType}</td>
     <td>${o.shipper}</td>
-    <td>${o.loadingDate}</td>
+    <td><fmt:formatDate value="${o.loadingDate}" pattern="yyyy-MM-dd"/></td>
     <td>${o.copyNum}</td>
     <td>${o.checkBy}</td>
     <td>

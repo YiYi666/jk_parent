@@ -56,7 +56,7 @@ ${page.links}
 		<td>${o.seller}</td>
 		<td>${o.buyer}</td>
 		<td>${o.invoiceNo}</td>
-		<td>${o.invoiceDate}</td>
+		<td><fmt:formatDate value="${o.invoiceDate}" pattern="yyyy-MM-dd"/></td>
 		<td>
 		<c:if test="${o.state==0}">草稿</c:if>
 		<c:if test="${o.state==1}"><b><font color="green">已上报</font></b></c:if>

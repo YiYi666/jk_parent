@@ -32,8 +32,14 @@
     <div>
 		<table class="commonTable" cellspacing="1">
 	        <tr>
-	            <td class="columnTitle">SEA海运AIR空运：</td>
-	            <td class="tableContent"><input type="text" name="orderType" value=""/></td>
+	            <td class="columnTitle">海运/空运：</td>
+	            <td class="tableContent">
+					<select style="width:90px;height: 30px" name="orderType">
+						<option value="海运">海运</option>
+						<option value="空运">空运</option>
+					</select>
+					<%--<input type="text" name="orderType" value=""/>--%>
+				</td>
 
 	            <td class="columnTitle">货主：</td>
 	            <td class="tableContent"><input type="text" name="shipper" value=""/></td>

@@ -46,11 +46,12 @@ public class ShippingOrderServiceImpl implements ShippingOrderService {
 
     @Override
     public void update(ShippingOrder model) {
-//        ShippingOrder oldModel = shippingOrderDao.get(ShippingOrder.class, model.getId());
-//        model.setCreateTime(oldModel.getCreateTime());
-//        model.setUpdateTime(new Date());
-//        shippingOrderDao.evict(oldModel);
-//        shippingOrderDao.update(model);
+        ShippingOrder oldModel = shippingOrderDao.get(ShippingOrder.class, model.getId());
+        model.setCreateTime(oldModel.getCreateTime());
+        model.setCreateTime(oldModel.getCreateTime());
+        model.setState(oldModel.getState());
+        shippingOrderDao.evict(oldModel);
+        shippingOrderDao.update(model);
     }
 
     @Override
