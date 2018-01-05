@@ -36,7 +36,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public void insert(Invoice model) {
         Long state = 0L;
-        model.setState(Double.valueOf(state));
+        model.setState(state);
         model.setCreateTime(new Date());
         PackingList packingList = packingListDao.get(PackingList.class, model.getId());
 
@@ -74,7 +74,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public void updateState(String id, Long state) {
         Invoice invoice = invoiceDao.get(Invoice.class, id);
-        invoice.setState(Double.valueOf(state));
+        invoice.setState(state);
 
         invoiceDao.update(invoice);
     }
