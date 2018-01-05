@@ -116,15 +116,15 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
 
     public String submit(){
         Long exportState = 1L;
-        Long contractState = 2L;
-        exportService.updateState(model,exportState,contractState);
+        //Long contractState = 2L;
+        exportService.updateState(model,exportState);
         return list();
     }
 
     public String cancel(){
         Long exportState = 0L;
-        Long contractState = 1L;
-        exportService.updateState(model,exportState,contractState);
+        //Long contractState = 1L;
+        exportService.updateState(model,exportState);
         return list();
     }
     public String export(){

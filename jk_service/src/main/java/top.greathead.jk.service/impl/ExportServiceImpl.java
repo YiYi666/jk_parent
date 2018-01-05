@@ -143,13 +143,13 @@ public class ExportServiceImpl implements ExportService {
     }
 
     @Override
-    public void updateState(Export model,Long exportState,Long contractState) {
+    public void updateState(Export model,Long exportState) {
 
         String[] ids = model.getId().split(", ");
         for(String id : ids){
             Export export = exportDao.get(Export.class, id);
             export.setState(exportState);
-            String contractIds = export.getContractIds();
+            /*String contractIds = export.getContractIds();
             if(contractIds!=null){
                 String[] Ids = contractIds.split(", ");
                 for(String contractId : Ids){
@@ -157,7 +157,7 @@ public class ExportServiceImpl implements ExportService {
                     contract.setState(contractState);
                     contractDao.update(contract);
                 }
-            }
+            }*/
             exportDao.update(export);
         }
     }

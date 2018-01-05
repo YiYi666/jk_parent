@@ -19,7 +19,7 @@ public interface ExportService {
 
     void delete(String[] ids);
 
-    void updateState(Export model,Long exportState,Long contractState);
+    void updateState(Export model,Long exportState);
 
     Pagination findByPage(Pagination page, Long state);
 
