@@ -155,7 +155,7 @@ public class ExportServiceImpl implements ExportService {
                 for(String contractId : Ids){
                     Contract contract = contractDao.get(Contract.class, contractId);
                     contract.setState(contractState);
-                    contractDao.update(contract);
+                    contractDao.update(contract);//
                 }
             }*/
             exportDao.update(export);
