@@ -50,6 +50,14 @@
             <result name="toview">/WEB-INF/pages/cargo/shippingorder/jShippingOrderView.jsp</result>
         </action>
 
+        <action name="invoiceAction_*" method="{1}" class="invoiceAction">
+            <result name="rlist" type="redirect">invoiceAction_list</result>
+            <result name="list">/WEB-INF/pages/cargo/invoice/jInvoiceListPage.jsp</result>
+            <result name="tocreate">/WEB-INF/pages/cargo/invoice/jInvoiceCreate.jsp</result>
+            <result name="toupdate">/WEB-INF/pages/cargo/invoice/jInvoiceUpdate.jsp</result>
+            <result name="toview">/WEB-INF/pages/cargo/invoice/jInvoiceView.jsp</result>
+        </action>
+
     </package>
 
 </struts>
