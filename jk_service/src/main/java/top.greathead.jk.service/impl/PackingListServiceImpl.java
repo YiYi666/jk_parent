@@ -22,6 +22,7 @@ public class PackingListServiceImpl implements PackingListService {
     @Autowired
     private  BaseDao<Export,String> exportDao;
 
+
     @Override
     @Transactional(readOnly = true)
     public Pagination findByPage(Pagination page) {
@@ -41,6 +42,8 @@ public class PackingListServiceImpl implements PackingListService {
         String exportNos = "";
         for(String id : exportIds){
             Export export = exportDao.get(Export.class, id);
+            export.setState(2L);
+            exportDao.update(export);
             exportNos = exportNos+ " " +export.getCustomerContract();
         }
         model.setExportNos(exportNos);

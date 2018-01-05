@@ -22,7 +22,7 @@ public class Export extends BaseEntity implements Serializable {
     private Long boxNums;
     private Long grossWeights;
     private Long measurements;
-    private Long state;
+    private Long state; //0-草稿 1-已上报 2-装箱 3-委托 4-发票 5-财务
 
     private Set<ExportProduct> exportProducts = new HashSet<>();
 
