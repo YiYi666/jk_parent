@@ -17,7 +17,33 @@ public class PackingList implements Serializable{
     private String createBy;
     private String createDept;
     private Date createTime;
+    private Finance finance;
+    private Invoice invoice;
+    private ShippingOrder shippingOrder;
 
+    public Finance getFinance() {
+        return finance;
+    }
+
+    public void setFinance(Finance finance) {
+        this.finance = finance;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public ShippingOrder getShippingOrder() {
+        return shippingOrder;
+    }
+
+    public void setShippingOrder(ShippingOrder shippingOrder) {
+        this.shippingOrder = shippingOrder;
+    }
 
     public String getId() {
         return id;
