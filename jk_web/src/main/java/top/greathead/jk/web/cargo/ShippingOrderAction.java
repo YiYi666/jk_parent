@@ -30,7 +30,8 @@ public class ShippingOrderAction extends BaseAction implements ModelDriven<Shipp
     private List<ShippingOrder> shippingOrderList;
 
     private ShippingOrder model = new ShippingOrder();
-
+    
+    //TODO 状态问题
     public String insert(){
         shippingOrderService.insert(model);
         return "rlist";

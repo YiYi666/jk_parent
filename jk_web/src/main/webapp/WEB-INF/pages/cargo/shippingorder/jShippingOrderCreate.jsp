@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title></title>
+	<script type="text/javascript" src="${ctx }/js/datepicker/WdatePicker.js"></script>
 </head>
 
 <body>
@@ -60,17 +61,39 @@
 	        </tr>	
 	        <tr>
 	            <td class="columnTitle">装期：</td>
-	            <td class="tableContent"><input type="text" name="loadingDate" value=""/></td>
+				<td class="tableContent">
+					<input type="text" style="width:90px;" name="loadingDate"
+						   value=""
+						   onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});"/>
+				</td>
+	            <%--<td class="tableContent"><input type="text" name="loadingDate" value=""/></td>--%>
 
 	            <td class="columnTitle">效期：</td>
-	            <td class="tableContent"><input type="text" name="limitDate" value=""/></td>
+				<td class="tableContent">
+					<input type="text" style="width:90px;" name="limitDate"
+						   value=""
+						   onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});"/>
+				</td>
+	            <%--<td class="tableContent"><input type="text" name="limitDate" value=""/></td>--%>
 	        </tr>	
 	        <tr>
 	            <td class="columnTitle">是否分批：</td>
-	            <td class="tableContent"><input type="text" name="isBatch" value=""/></td>
+	            <td class="tableContent">
+					<select style="width:90px;height: 30px" name="isBatch">
+						<option value="0">否</option>
+						<option value="1">是</option>
+					</select>
+					<%--<input type="<select name=" " id=""></select>" name="isBatch" value=""/>--%>
+				</td>
 
 	            <td class="columnTitle">是否转船：</td>
-	            <td class="tableContent"><input type="text" name="isTrans" value=""/></td>
+				<td class="tableContent">
+					<select style="width:90px;height: 30px" name="isTrans">
+						<option value="0">否</option>
+						<option value="1">是</option>
+					</select>
+				</td>
+	           <%-- <td class="tableContent"><input type="text" name="isTrans" value=""/></td>--%>
 	        </tr>	
 	        <tr>
 	            <td class="columnTitle">份数：</td>
