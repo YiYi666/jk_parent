@@ -18,6 +18,10 @@ public class PackingList implements Serializable{
     private String createDept;
     private Date createTime;
 
+    private ShippingOrder shippingOrder;
+
+
+
 
     public String getId() {
         return id;
@@ -121,5 +125,13 @@ public class PackingList implements Serializable{
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public ShippingOrder getShippingOrder() {
+        return shippingOrder;
+    }
+
+    public void setShippingOrder(ShippingOrder shippingOrder) {
+        this.shippingOrder = shippingOrder;
     }
 }

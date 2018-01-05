@@ -6,7 +6,10 @@
 
     <class name="top.greathead.jk.entity.ShippingOrder" table="SHIPPING_ORDER_C" schema="JK">
         <id name="id" column="SHIPPING_ORDER_ID">
-            <generator class="uuid"/>        </id>
+            <generator class="foreign">
+                <param name="property">packingList</param>
+            </generator>
+        </id>
         <property name="orderType" column="ORDER_TYPE"/>
         <property name="shipper" column="SHIPPER"/>
         <property name="consignee" column="CONSIGNEE"/>
@@ -28,5 +31,7 @@
         <property name="createBy" column="CREATE_BY"/>
         <property name="createDept" column="CREATE_DEPT"/>
         <property name="createTime" column="CREATE_TIME"/>
+
+        <one-to-one name="packingList" class="top.greathead.jk.entity.PackingList" constrained="true"/>
     </class>
 </hibernate-mapping>

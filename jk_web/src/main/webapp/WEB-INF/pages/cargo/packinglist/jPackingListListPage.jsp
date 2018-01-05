@@ -17,6 +17,7 @@
 <li id="view"><a href="#" onclick="formSubmit('packingListAction_toview','_self');this.blur();">查看</a></li>
 <li id="new"><a href="#" onclick="formSubmit('packingListAction_tocreate','_self');this.blur();">新增</a></li>
 <li id="update"><a href="#" onclick="formSubmit('packingListAction_toupdate','_self');this.blur();">修改</a></li>
+<li id="new"><a href="#" onclick="formSubmit('packingListAction_submit','_self');this.blur();">提交</a></li>
 <li id="delete"><a href="#" onclick="formSubmit('packingListAction_delete','_self');this.blur();">删除</a></li>
 </ul>
   </div>
