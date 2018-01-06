@@ -76,19 +76,35 @@ public class ContractAction extends BaseAction implements ModelDriven<Contract>{
         return "toview";
     }
 
+    public String cancel(){
+        Contract contract = contractService.findById(model.getId());
+        String msg = null;
+        if(contract.getState()==0L){
+            msg ="<script type='application/javascript'> window.location='contractAction_list?page.pageNo="+page.getPageNo()+"'; alert('此合同是草稿，无法取消！') </script>";
+            printJS(msg);
+            return null;
+        }else if(contract.getState()==2L){
+                msg ="<script type='application/javascript'> window.location='contractAction_list?page.pageNo="+page.getPageNo()+"'; alert('此合同已报运，无法取消！') </script>";
+            printJS(msg);
+            return null;
+        }
+        Long state = 0L;
+        contractService.updateState(model.getId(),state);
+        return "rlist";
+    }
+
     public String submit(){
         Contract contract = contractService.findById(model.getId());
         Set<ContractProduct> contractProducts = contract.getContractProducts();
-        PrintWriter writer =null;
-        HttpServletResponse response = ServletActionContext.getResponse();
-        response.setContentType("text/html;charset=utf-8");
-        try {
-            writer = response.getWriter();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String msg = null;
         if(contractProducts.isEmpty()){
-            writer.write("<script type=\"application/javascript\"> window.location=\"contractAction_list?page.pageNo="+page.getPageNo()+"\"; alert('合同中货物为空！不能提交！') </script>");
+            msg = "<script type=\"application/javascript\"> window.location=\"contractAction_list?page.pageNo="+page.getPageNo()+"\"; alert('合同中货物为空！不能提交！') </script>";
+            printJS(msg);
+            return null;
+        }
+        else if(contract.getState()!=0L){
+            msg ="<script type='application/javascript'> window.location='contractAction_list?page.pageNo="+page.getPageNo()+"'; alert('此合同已提交过了！不能重复提交') </script>";
+            printJS(msg);
             return null;
         }
         Long state = 1L;

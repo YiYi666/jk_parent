@@ -149,6 +149,7 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
             //System.out.println(remark);
             //TODO
             if(exportResult.getState().equals("2")){
+                contractService.updateState(export.getId(),2L);
                 exportService.updateState(model,1L);
             }
         } catch (Exception_Exception e) {
