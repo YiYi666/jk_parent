@@ -1,12 +1,15 @@
 package top.greathead.jk.service.impl;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.greathead.jk.dao.BaseDao;
 import top.greathead.jk.entity.Module;
+import top.greathead.jk.entity.User;
 import top.greathead.jk.service.ModuleService;
 import top.greathead.jk.utils.Pagination;
+import top.greathead.jk.utils.SysConstant;
 
 import java.util.Date;
 import java.util.List;
@@ -33,6 +36,9 @@ public class ModuleServiceImpl implements ModuleService {
     public void insert(Module model) {
         Module module = moduleDao.getByHQL("from Module where name = ?",model.getParentName());
         model.setParentId(module.getId());
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+        model.setCreateBy(user.getId());
+        model.setCreateDept(user.getDept().getId());
         moduleDao.save(model);
     }
 
@@ -44,6 +50,11 @@ public class ModuleServiceImpl implements ModuleService {
         moduleDao.evict(module);
         Module module2 = moduleDao.getByHQL("from Module where name = ?",model.getParentName());
         model.setParentId(module2.getId());
+
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+        model.setUpdateBy(user.getId());
+        model.setUpdateTime(new Date());
+
         moduleDao.update(model);
     }
 
