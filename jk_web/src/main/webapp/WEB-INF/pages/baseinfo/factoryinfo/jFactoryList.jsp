@@ -50,7 +50,7 @@
             <div id="innerMenubar">
                 <div id="navMenubar">
                     <ul>
-                        <li id="view"><a href="#" onclick="javascript:toView(factoryInfoAction_toview)">查看</a></li>
+                        <li id="view"><a href="#" onclick="javascript:toView('factoryInfoAction_toview')">查看</a></li>
                         <li id="new"><a href="#" onclick="formSubmit('factoryInfoAction_tocreate','_self');this.blur();">新增</a>
                         </li>
                         <li id="update"><a href="#" onclick="javascript:toUpdate('factoryInfoAction_toupdate')">修改</a></li>
