@@ -24,4 +24,6 @@ public interface UserService {
     User findUserByUserName(String username);
 
     List<Object[]> findOnlineInfo();
+
+    void recordLoginLog(String userName, String ipAddr);
 }

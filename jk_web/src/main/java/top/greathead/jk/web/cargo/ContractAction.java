@@ -17,7 +17,9 @@ import top.greathead.jk.web.BaseAction;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author coach tam
@@ -75,6 +77,20 @@ public class ContractAction extends BaseAction implements ModelDriven<Contract>{
     }
 
     public String submit(){
+        Contract contract = contractService.findById(model.getId());
+        Set<ContractProduct> contractProducts = contract.getContractProducts();
+        PrintWriter writer =null;
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setContentType("text/html;charset=utf-8");
+        try {
+            writer = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(contractProducts.isEmpty()){
+            writer.write("<script type=\"application/javascript\"> window.location=\"contractAction_list?page.pageNo="+page.getPageNo()+"\"; alert('合同中货物为空！不能提交！') </script>");
+            return null;
+        }
         Long state = 1L;
         contractService.updateState(model.getId(),state);
         return "rlist";

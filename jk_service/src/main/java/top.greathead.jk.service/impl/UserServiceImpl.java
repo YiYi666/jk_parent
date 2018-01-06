@@ -1,6 +1,7 @@
 package top.greathead.jk.service.impl;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.greathead.jk.dao.BaseDao;
+import top.greathead.jk.entity.LoginLog;
 import top.greathead.jk.entity.Role;
 import top.greathead.jk.entity.User;
 import top.greathead.jk.service.RoleService;
@@ -15,6 +17,7 @@ import top.greathead.jk.service.UserService;
 import top.greathead.jk.utils.Encrypt;
 import top.greathead.jk.utils.MailUtils;
 import top.greathead.jk.utils.Pagination;
+import top.greathead.jk.utils.SysConstant;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -33,6 +36,8 @@ public class UserServiceImpl implements UserService {
     private MailUtils mailUtils;
     @Autowired
     private SessionFactory sessionFactory;
+    @Autowired
+    private BaseDao<LoginLog,String> loginLogDao;
 
 
 
@@ -62,6 +67,9 @@ public class UserServiceImpl implements UserService {
         model.getUserInfo().setUser(model);
         String password = "123456";
         model.setPassword(Encrypt.md5(password,model.getUserName()));
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+        model.setCreateBy(user.getId());
+        model.setCreateDept(user.getDept().getId());
         userDao.save(model);
         String title = "欢迎来到本公司";
         String text = "已成功为你注册用户，用户名/密码："+model.getUserName()+"/"+password;
@@ -100,6 +108,11 @@ public class UserServiceImpl implements UserService {
         user.setUserName(model.getUserName());
         user.setState(model.getState());
         user.setUpdateTime(new Date());
+
+        User u = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+        user.setUpdateBy(u.getId());
+        user.setUpdateTime(new Date());
+
         userDao.update(user);
     }
 
@@ -143,5 +156,14 @@ public class UserServiceImpl implements UserService {
         List list = sqlQuery.list();
         session.close();
         return list;
+    }
+
+    @Override
+    public void recordLoginLog(String userName, String ipAddr) {
+        LoginLog loginLog = new LoginLog();
+        loginLog.setLoginName(userName);
+        loginLog.setIpAddress(ipAddr);
+        loginLog.setLoginTime(new Date());
+        loginLogDao.save(loginLog);
     }
 }

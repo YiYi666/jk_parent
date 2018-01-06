@@ -1652,6 +1652,24 @@ var inputs = document.getElementsByTagName('input');
 window.onload = reInput;
 
 
+
+var url;
+$.validator.setDefaults({
+    submitHandler: function() {
+        formSubmit(url,'_self');this.blur();
+    }
+});
+
+$().ready(function() {
+    $("[name = 'icform']").validate();
+
+    $('#save').click(function () {
+        url = $(this).attr("value");
+        $("[name = 'icform']").submit();
+    })
+});
+
+
 function isOnlyChecked() {
     var checkBoxArray = document.getElementsByName('id');
     var count = 0;
@@ -1709,6 +1727,35 @@ function toUpdate(url) {
     }
 }
 
+function toSubmit(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+function toCancel(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+function toPrint(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+function toTransportation(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+
 function toDelete(url) {
     if (isChecked()) {
         formSubmit(url, '_self');
@@ -1716,20 +1763,19 @@ function toDelete(url) {
         alert("请先选择一项或多项，再进行操作！");
     }
 }
-
-
-var url;
-$.validator.setDefaults({
-    submitHandler: function() {
-        formSubmit(url,'_self');this.blur();
+function toAdd(url) {
+    if (isChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项或多项，再进行操作！");
     }
-});
+}
+function toInsert(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
 
-$().ready(function() {
-    $("[name = 'icform']").validate();
 
-    $('#save').click(function () {
-        url = $(this).attr("value");
-        $("[name = 'icform']").submit();
-    })
-});

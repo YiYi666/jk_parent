@@ -20,5 +20,10 @@
         <property name="createBy" column="CREATE_BY"/>
         <property name="createDept" column="CREATE_DEPT"/>
         <property name="createTime" column="CREATE_TIME"/>
+
+        <one-to-one name="shippingOrder" class="top.greathead.jk.entity.ShippingOrder" cascade="all"/>
+        <one-to-one name="invoice" class="top.greathead.jk.entity.Invoice" cascade="all"/>
+        <one-to-one name="finance" class="top.greathead.jk.entity.Finance" cascade="all"/>
+
     </class>
 </hibernate-mapping>

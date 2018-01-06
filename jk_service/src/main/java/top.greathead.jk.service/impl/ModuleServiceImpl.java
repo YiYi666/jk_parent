@@ -1,12 +1,15 @@
 package top.greathead.jk.service.impl;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.greathead.jk.dao.BaseDao;
 import top.greathead.jk.entity.Module;
+import top.greathead.jk.entity.User;
 import top.greathead.jk.service.ModuleService;
 import top.greathead.jk.utils.Pagination;
+import top.greathead.jk.utils.SysConstant;
 
 import java.util.Date;
 import java.util.List;
@@ -31,8 +34,15 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public void insert(Module model) {
-        Module module = moduleDao.getByHQL("from Module where name = ?",model.getParentName());
-        model.setParentId(module.getId());
+
+        if(!model.getParentName().isEmpty()) {
+            Module module = moduleDao.getByHQL("from Module where name = ?", model.getParentName());
+            model.setParentId(module.getId());
+        }
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+        model.setCreateBy(user.getId());
+        model.setCreateDept(user.getDept().getId());
+
         moduleDao.save(model);
     }
 
@@ -42,8 +52,15 @@ public class ModuleServiceImpl implements ModuleService {
         model.setUpdateTime(new Date());
         model.setCreateTime(module.getCreateTime());
         moduleDao.evict(module);
-        Module module2 = moduleDao.getByHQL("from Module where name = ?",model.getParentName());
-        model.setParentId(module2.getId());
+
+        if(!model.getParentName().isEmpty()) {
+            Module module2 = moduleDao.getByHQL("from Module where name = ?", model.getParentName());
+            model.setParentId(module2.getId());
+        }
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+        model.setUpdateBy(user.getId());
+        model.setUpdateTime(new Date());
+
         moduleDao.update(model);
     }
 
@@ -58,5 +75,18 @@ public class ModuleServiceImpl implements ModuleService {
         for (String id : ids) {
             moduleDao.deleteById(Module.class,id);
         }
+    }
+
+    @Override
+    public Pagination findByPage(Pagination page, String parentId) {
+        if (parentId==""||parentId==null) {
+            return moduleDao.pageByHql("from Module where parentId is null" ,page.getPageNo(),page.getPageSize());
+        }
+        return moduleDao.pageByHql("from Module where parentId = ?" ,page.getPageNo(),page.getPageSize(),parentId);
+    }
+
+    @Override
+    public List<Module> findParentModule() {
+        return moduleDao.getListByHQL("from Module where parentId is null");
     }
 }

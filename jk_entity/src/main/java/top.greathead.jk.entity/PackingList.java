@@ -19,6 +19,10 @@ public class PackingList implements Serializable{
     private Date createTime;
 
 
+    private ShippingOrder shippingOrder;
+    private Invoice invoice;
+    private Finance finance;
+
     public String getId() {
         return id;
     }
@@ -121,5 +125,29 @@ public class PackingList implements Serializable{
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public ShippingOrder getShippingOrder() {
+        return shippingOrder;
+    }
+
+    public void setShippingOrder(ShippingOrder shippingOrder) {
+        this.shippingOrder = shippingOrder;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public Finance getFinance() {
+        return finance;
+    }
+
+    public void setFinance(Finance finance) {
+        this.finance = finance;
     }
 }
