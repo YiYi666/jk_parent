@@ -28,7 +28,7 @@
 		<div class="textbox-header">
 			<div class="textbox-inner-header">
 				<div class="textbox-title">
-					新增模块节点
+					新增工厂
 				</div>
 			</div>
 		</div>
@@ -38,31 +38,34 @@
 		<div>
 			<table class="commonTable" cellspacing="1">
 				<tr>
-					<td class="columnTitle">id：</td>
-					<td class="tableContent"><input type="text" readonly name="id" value=""/></td>
-					<td class="columnTitle">模块名：</td>
-					<td class="tableContent"><input type="text" name="name" value=""/></td>
+					<td class="columnTitle">厂家id：</td>
+					<td class="tableContent"><input type="text" readonly value="自动生成"/></td>
+					<td class="columnTitle">供货类型：</td>
+					<td class="tableContent"><input type="text" name="ctype" value=""/></td>
 				</tr>
 				<tr>
-					<td class="columnTitle">父id：</td>
-					<td class="tableContent"><input type="text" name="parentId" value=""/></td>
-					<td class="columnTitle">父节点名：</td>
-					<td class="tableContent"><input type="text" name="parentName" value=""/></td>
+					<td class="columnTitle">厂家全名：</td>
+					<td class="tableContent"><input type="text" name="fullName" value=""/></td>
+					<td class="columnTitle">厂名缩写：</td>
+					<td class="tableContent"><input type="text" name="factoryName" value=""/></td>
 				</tr>
 				<tr>
-					<td class="columnTitle">层数：</td>
-					<td class="tableContent"><input type="text" style="width:90px;" name="layerNum" value=""/></td>
-					<td class="columnTitle">链接：</td>
-					<td class="tableContent"><input type="text" style="width:90px;" name="curl" value=""/></td>
+					<td class="columnTitle">联系人：</td>
+					<td class="tableContent"><input type="text" style="width:90px;" name="contacts" value=""/></td>
+					<td class="columnTitle">电话：</td>
+					<td class="tableContent"><input type="text" style="width:90px;" name="phone" value=""/></td>
 				</tr>
 				<tr>
-					<td class="columnTitle">引用次数：</td>
-					<td class="tableContent"><input type="text" name="quoteNum" value=""/></td>
-					<td class="columnTitle">是否页节点：</td>
-					<td class="tableContentAuto">
-						<input type="radio" name="isLeaf" value="1"  class="input">否
-						<input type="radio" name="isLeaf" value="0" checked  class="input">是
-					</td>
+					<td class="columnTitle">手机：</td>
+					<td class="tableContent"><input type="text" name="mobile" value=""/></td>
+					<td class="columnTitle">传真：</td>
+					<td class="tableContent"><input type="text" name="fax" value=""/></td>
+				</tr>
+				<tr>
+					<td class="columnTitle">验货员：</td>
+					<td class="tableContent"><input type="text" style="width:90px;" name="inspector" value=""/></td>
+					<td class="columnTitle">排序号：</td>
+					<td class="tableContent"><input type="text" style="width:90px;" name="orderNo" value=""/></td>
 				</tr>
 				<tr>
 					<td class="columnTitle">状态：</td>
@@ -90,10 +93,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="columnTitle">链接：</td>
-					<td class="tableContent"><input type="text"  name="curl" value=""/></td>
+					<td class="columnTitle">地址：</td>
+					<td class="tableContent"><textarea name="address" style="height:150px;"></textarea>
 					<td class="columnTitle">说明：</td>
-					<td class="tableContent"><input type="text"  name="remark" value=""/></td>
+					<td class="tableContent"><textarea name="remark" style="height:150px;"></textarea>
 				</tr>
 			</table>
 		</div>
