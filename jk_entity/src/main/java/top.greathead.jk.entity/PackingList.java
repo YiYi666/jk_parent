@@ -17,9 +17,6 @@ public class PackingList implements Serializable{
     private String createBy;
     private String createDept;
     private Date createTime;
-    private Finance finance;
-    private Invoice invoice;
-    private ShippingOrder shippingOrder;
 
 
     private ShippingOrder shippingOrder;

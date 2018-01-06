@@ -26,15 +26,6 @@ public class ShippingOrder {
     private String createBy;
     private String createDept;
     private Date createTime;
-    private PackingList packingList;
-
-    public PackingList getPackingList() {
-        return packingList;
-    }
-
-    public void setPackingList(PackingList packingList) {
-        this.packingList = packingList;
-    }
 
     private PackingList packingList;
 
