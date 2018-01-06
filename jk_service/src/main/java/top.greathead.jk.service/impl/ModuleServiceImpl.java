@@ -71,4 +71,9 @@ public class ModuleServiceImpl implements ModuleService {
         }
         return moduleDao.pageByHql("from Module where parentId = ?" ,page.getPageNo(),page.getPageSize(),parentId);
     }
+
+    @Override
+    public List<Module> findParentModule() {
+        return moduleDao.getListByHQL("from Module where parentId is null");
+    }
 }

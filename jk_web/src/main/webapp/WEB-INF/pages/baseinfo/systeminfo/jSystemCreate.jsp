@@ -44,10 +44,11 @@
 					<td class="tableContent"><input type="text" name="name" value=""/></td>
 				</tr>
 				<tr>
-					<td class="columnTitle">父id：</td>
-					<td class="tableContent"><input type="text" name="parentId" value=""/></td>
-					<td class="columnTitle">父节点名：</td>
-					<td class="tableContent"><input type="text" name="parentName" value=""/></td>
+					<td class="columnTitle">父模块：</td>
+					<td class="tableContent"><s:select name="parentId" list="moduleList" headerKey="" headerValue="--请选择--" listKey="id" listValue="name"></s:select></td>
+
+					<td class="columnTitle">复用标识：</td>
+					<td class="tableContent"><input type="text" name="cwhich" value=""/></td>
 				</tr>
 				<tr>
 					<td class="columnTitle">层数：</td>

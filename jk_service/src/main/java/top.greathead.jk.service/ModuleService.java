@@ -19,4 +19,6 @@ public interface ModuleService {
     void delete(String[] split);
 
     Pagination findByPage(Pagination page, String parentId);
+
+    List<Module> findParentModule();
 }

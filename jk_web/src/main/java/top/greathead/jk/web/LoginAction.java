@@ -8,8 +8,13 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import top.greathead.jk.entity.LoginLog;
 import top.greathead.jk.entity.User;
+import top.greathead.jk.service.UserService;
 import top.greathead.jk.utils.SysConstant;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller("loginAction")
 @Scope("prototype")
@@ -18,6 +23,8 @@ public class LoginAction extends ActionSupport {
 	private String username;
 	private String password;
 	private String errorInfo = null;
+	@Resource(name = "userService")
+	private UserService userService;
 
 	public String login(){
 		if(null == username || null == password){
@@ -29,15 +36,42 @@ public class LoginAction extends ActionSupport {
 				subject.login(token);
 
 				User user = (User) subject.getPrincipal();
-				ServletActionContext.getRequest().getSession().setAttribute(SysConstant.C_USER,user);
+				HttpServletRequest request = ServletActionContext.getRequest();
+				request.getSession().setAttribute(SysConstant.C_USER,user);
+				userService.recordLoginLog(user.getUserName(),getIpAddr(request));
 				return "success";
 			}catch (Exception e){
 				errorInfo="用户名或密码错误！";
+				HttpServletRequest request = ServletActionContext.getRequest();
+				userService.recordLoginLog("anonymous",getIpAddr(request));
 				e.printStackTrace();
 				return "login";
 			}
 
 		}
+	}
+
+	/**
+	 * 获取登录用户IP地址
+	 *
+	 * @param request
+	 * @return
+	 */
+	private String getIpAddr(HttpServletRequest request) {
+		String ip = request.getHeader("x-forwarded-for");
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		if (ip.equals("0:0:0:0:0:0:0:1")) {
+			ip = "127.0.0.1";
+		}
+		return ip;
 	}
 
 	public void setUsername(String username) {
