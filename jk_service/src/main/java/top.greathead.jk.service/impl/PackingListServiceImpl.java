@@ -37,8 +37,8 @@ public class PackingListServiceImpl implements PackingListService {
 
     @Override
     public void insert(PackingList model) {
-        //TODO  exportNos
-        String[] exportIds = model.getExportIds().split(", ");
+
+        String[] exportIds = model.getId().split(", ");
         String exportNos = "";
         for(String id : exportIds){
             Export export = exportDao.get(Export.class, id);
