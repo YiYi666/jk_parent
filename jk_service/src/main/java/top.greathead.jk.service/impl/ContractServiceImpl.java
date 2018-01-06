@@ -1,12 +1,15 @@
 package top.greathead.jk.service.impl;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.greathead.jk.dao.BaseDao;
 import top.greathead.jk.entity.Contract;
+import top.greathead.jk.entity.User;
 import top.greathead.jk.service.ContractService;
 import top.greathead.jk.utils.Pagination;
+import top.greathead.jk.utils.SysConstant;
 
 import java.util.Date;
 import java.util.List;
@@ -39,6 +42,11 @@ public class ContractServiceImpl implements ContractService {
 
         model.setTotalAmount(totalAmount);
         model.setState(state);
+
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+        model.setCreateBy(user.getId());
+        model.setCreateDept(user.getDept().getId());
+
         contractDao.save(model);
     }
 
@@ -46,7 +54,11 @@ public class ContractServiceImpl implements ContractService {
     public void update(Contract model) {
         Contract oldModel = contractDao.get(Contract.class, model.getId());
         model.setCreateTime(oldModel.getCreateTime());
+
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+        model.setUpdateBy(user.getId());
         model.setUpdateTime(new Date());
+        model.setState(oldModel.getState());
         contractDao.evict(oldModel);
         contractDao.update(model);
     }

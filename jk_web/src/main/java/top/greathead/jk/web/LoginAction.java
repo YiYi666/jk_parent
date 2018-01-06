@@ -36,9 +36,13 @@ public class LoginAction extends ActionSupport {
 				subject.login(token);
 
 				User user = (User) subject.getPrincipal();
+
 				HttpServletRequest request = ServletActionContext.getRequest();
 				request.getSession().setAttribute(SysConstant.C_USER,user);
 				userService.recordLoginLog(user.getUserName(),getIpAddr(request));
+
+				ServletActionContext.getRequest().getSession().setAttribute(SysConstant.C_USER,user);
+
 				return "success";
 			}catch (Exception e){
 				errorInfo="用户名或密码错误！";

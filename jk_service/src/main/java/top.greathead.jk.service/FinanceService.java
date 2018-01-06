@@ -6,15 +6,25 @@ import top.greathead.jk.utils.Pagination;
 import java.util.List;
 
 public interface FinanceService {
-Pagination findPage(Pagination pageNo);
 
-List<Finance> findAll();
+    Pagination findByPage(Pagination page);
 
-    void save(Finance model);
+    List<Finance> findAll();
+
+    void insert(Finance model);
+
 
     Finance findById(String id);
 
     void update(Finance model);
 
-    void deleteById(String id);
+
+    void delete(String[] ids);
+
+    void updateState(String id, Long state);
+
+    Pagination findByPage(Pagination page, Long state);
+
+    List<Finance> findListbyDeliveryPeriod(String now);
+
 }

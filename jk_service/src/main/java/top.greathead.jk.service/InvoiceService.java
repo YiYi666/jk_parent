@@ -6,15 +6,25 @@ import top.greathead.jk.utils.Pagination;
 import java.util.List;
 
 public interface InvoiceService {
-Pagination findPage(Pagination pageNo);
 
-List<Invoice> findAll();
+    Pagination findByPage(Pagination page);
 
-    void save(Invoice model);
+    List<Invoice> findAll();
+
+    void insert(Invoice model);
+
 
     Invoice findById(String id);
 
     void update(Invoice model);
 
-    void deleteById(String id);
+
+    void delete(String[] ids);
+
+    void updateState(String id, Long state);
+
+    Pagination findByPage(Pagination page, Long state);
+
+    List<Invoice> findListbyDeliveryPeriod(String now);
+
 }

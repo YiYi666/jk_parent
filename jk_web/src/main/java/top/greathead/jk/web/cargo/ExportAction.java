@@ -15,6 +15,7 @@ import top.greathead.jk.entity.Export;
 import top.greathead.jk.entity.ExportProduct;
 import top.greathead.jk.service.ContractService;
 import top.greathead.jk.service.ExportService;
+import top.greathead.jk.service.PackingListService;
 import top.greathead.jk.utils.FastJsonUtil;
 import top.greathead.jk.utils.Pagination;
 import top.greathead.jk.web.BaseAction;
@@ -44,7 +45,6 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
     private ContractService contractService;
     @Autowired
     private EpService epService;
-
 
     private String[] mr_id;
     private String[] mr_changed;
@@ -146,8 +146,11 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
             String exportE = epService.exportE(json);
             ExportResult exportResult = JSON.parseObject(exportE, ExportResult.class);
             String remark = exportResult.getRemark();
-            System.out.println(remark);
+            //System.out.println(remark);
             //TODO
+            if(exportResult.getState().equals("2")){
+                exportService.updateState(model,1L);
+            }
         } catch (Exception_Exception e) {
             e.printStackTrace();
         }

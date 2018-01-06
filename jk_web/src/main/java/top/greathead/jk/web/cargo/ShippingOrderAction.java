@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import top.greathead.jk.entity.ShippingOrder;
+import top.greathead.jk.service.PackingListService;
 import top.greathead.jk.service.ShippingOrderService;
 import top.greathead.jk.utils.Pagination;
 import top.greathead.jk.web.BaseAction;
@@ -23,6 +24,8 @@ public class ShippingOrderAction extends BaseAction implements ModelDriven<Shipp
 
     @Autowired
     private ShippingOrderService shippingOrderService;
+    @Autowired
+    private PackingListService packingListService;
 
     private List<ShippingOrder> shippingOrderList;
 
@@ -40,7 +43,10 @@ public class ShippingOrderAction extends BaseAction implements ModelDriven<Shipp
         return "list";
     }
     public String tocreate(){
-        shippingOrderList = shippingOrderService.findAll();
+        Long state = 1L;
+        page = packingListService.findByPage(page,state);
+        page.setUrl("shippingOrderAction_tocreate");
+        push(page);
         return "tocreate";
     }
     public String toupdate(){

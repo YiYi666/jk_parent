@@ -22,7 +22,7 @@
                                            onclick="javascript:toUpdate('roleAction_toupdate')">修改</a></li>
                         <li id="delete"><a href="#"
                                            onclick="javascript:toDelete('roleAction_delete')">删除</a></li>
-                        <li id="new"><a href="#" onclick="formSubmit('roleAction_tomodule','_self');this.blur();"
+                        <li id="new"><a href="javascript:toUpdate('roleAction_tomodule')" <%--onclick="formSubmit('roleAction_tomodule','_self');this.blur();"--%>
                                         title="分配权限">权限</a></li>
                     </ul>
                 </div>

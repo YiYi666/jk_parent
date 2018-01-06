@@ -1,8 +1,6 @@
 package top.greathead.jk.entity;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * @Description:	Finance
@@ -17,10 +15,12 @@ public class Finance extends BaseEntity {
 	private String id;	  	
 	private Date inputDate;			
 	private String inputBy;			
-	private Double state;			//0草稿 1已上报
+
+	private Long state;			//0草稿 1已上报
 	private String createBy;			
 	private String createDept;			
-	private Date createTime;			
+	private Date createTime;
+
 	private PackingList packingList;
 
 	public String getId() {
@@ -47,11 +47,14 @@ public class Finance extends BaseEntity {
 		this.inputBy = inputBy;
 	}
 
-	public Double getState() {
+
+
+	public Long getState() {
 		return state;
 	}
 
-	public void setState(Double state) {
+	public void setState(Long state) {
+
 		this.state = state;
 	}
 

@@ -68,7 +68,7 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="save"><a href="#" onclick="submitCheckedNodes();formSubmit('roleAction_module','_self');this.blur();">保存</a></li>
+<li id="save" value="roleAction_module"><a href="#" <%--onclick="submitCheckedNodes();formSubmit('roleAction_module','_self');this.blur();"--%>>保存</a></li>
 <li id="back"><a href="#" onclick="formSubmit('roleAction_list','_self');this.blur();">返回</a></li>
 </ul>
   </div>

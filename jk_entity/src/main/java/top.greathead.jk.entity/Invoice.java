@@ -18,10 +18,12 @@ public class Invoice extends BaseEntity {
 	private String scNo;			//packing.getExportNos S/C就是报运的合同号
 	private String blNo;			
 	private String tradeTerms;			
-	private Double state;			//0草稿 1已上报
+
+	private Long state;			//0草稿 1已上报
 	private String createBy;			
 	private String createDept;			
 	private Date createTime;
+
 	private PackingList packingList;
 
 	public String getId() {
@@ -56,11 +58,13 @@ public class Invoice extends BaseEntity {
 		this.tradeTerms = tradeTerms;
 	}
 
-	public Double getState() {
+
+	public Long getState() {
 		return state;
 	}
 
-	public void setState(Double state) {
+	public void setState(Long state) {
+
 		this.state = state;
 	}
 
