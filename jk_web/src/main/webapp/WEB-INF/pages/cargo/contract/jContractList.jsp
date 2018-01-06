@@ -14,13 +14,15 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="view"><a href="#" onclick="formSubmit('contractAction_toview','_self');this.blur();">查看</a></li>
+
+
+<li id="view"><a href="javascript:toView('contractAction_toview')" <%--onclick="formSubmit('contractAction_toview','_self');this.blur();"--%>>查看</a></li>
 <li id="new"><a href="#" onclick="formSubmit('contractAction_tocreate','_self');this.blur();">新增</a></li>
-<li id="update"><a href="#" onclick="formSubmit('contractAction_toupdate','_self');this.blur();">修改</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('contractAction_delete','_self');this.blur();">删除</a></li>
-<li id="new"><a href="#" onclick="formSubmit('contractAction_submit','_self');this.blur();">提交</a></li>
-<li id="new"><a href="#" onclick="formSubmit('contractAction_cancel','_self');this.blur();">取消</a></li>
-<li id="new"><a href="#" onclick="formSubmit('contractAction_print','_self');this.blur();">打印</a></li>
+<li id="update"><a href="javascript:toUpdate('contractAction_toupdate')">修改</a></li>
+<li id="delete"><a href="javascript:toDelete('contractAction_delete')">删除</a></li>
+<li id="submit"><a href="javascript:toSubmit('contractAction_submit')">提交</a></li>
+<li id="new"><a href="javascript:toCancel('contractAction_cancel')">取消</a></li>
+<li id="print"><a href="javascript:toPrint('contractAction_print')">打印</a></li>
 </ul>
   </div>
 </div>
@@ -101,7 +103,7 @@
  
 </div>
  
- 
+</div>
 </form>
 </body>
 </html>

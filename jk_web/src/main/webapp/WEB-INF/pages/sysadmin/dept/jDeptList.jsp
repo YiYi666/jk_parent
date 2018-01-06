@@ -50,12 +50,12 @@
             <div id="innerMenubar">
                 <div id="navMenubar">
                     <ul>
-                        <li id="view"><a href="#" onclick="javascript:toView()">查看</a></li>
-                        <li id="new"><a href="#" onclick="formSubmit('deptAction_tocreate','_self');this.blur();">新增</a>
+
+                        <li id="view"><a href="javascript:toView('deptAction_toview')">查看</a></li>
+                        <li id="new"><a href="#" onclick="formSubmit('userAction_tocreate','_self');this.blur();">新增</a>
                         </li>
-                        <li id="update"><a href="#" onclick="javascript:toUpdate()">修改</a></li>
-                        <li id="delete"><a href="#"
-                                           onclick="formSubmit('deptAction_delete','_self');this.blur();">删除</a></li>
+                        <li id="update"><a href="javascript:toUpdate('deptAction_toupdate')">修改</a></li>
+                        <li id="delete"><a href="javascript:toDelete('deptAction_delete')">删除</a></li>
                     </ul>
                 </div>
             </div>

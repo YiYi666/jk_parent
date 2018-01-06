@@ -15,12 +15,14 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="view"><a href="#" onclick="formSubmit('exportAction_toview','_self');this.blur();">查看</a></li>
-<li id="update"><a href="#" onclick="formSubmit('exportAction_toupdate','_self');this.blur();">修改</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('exportAction_delete','_self');this.blur();">删除</a></li>
+
+
+<li id="view"><a href="javascript:toView('exportAction_toview')">查看</a></li>
+<li id="update"><a href="javascript:toUpdate('exportAction_toupdate')">修改</a></li>
+<li id="delete"><a href="javascript:toDelete('exportAction_delete')">删除</a></li>
 <%--<li id="new"><a href="#" onclick="formSubmit('exportAction_submit','_self');this.blur();">提交</a></li>
 <li id="new"><a href="#" onclick="formSubmit('exportAction_cancel','_self');this.blur();">取消</a></li>--%>
-<li id="new"><a href="#" onclick="formSubmit('exportAction_export','_self');this.blur();">电报</a></li>
+<li id="new"><a href="javascript:toTransportation('exportAction_export')">电报</a></li>
 </ul>
   </div>
 </div>

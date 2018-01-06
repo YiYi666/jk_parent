@@ -22,7 +22,7 @@
             <div id="innerMenubar">
                 <div id="navMenubar">
                     <ul>
-                        <li id="save"><a href="#" onclick="formSubmit('userAction_role','_self');this.blur();">保存</a>
+                        <li id="save" value="userAction_role"><a href="#" <%--onclick="formSubmit('userAction_role','_self');this.blur();"--%>>保存</a>
                         </li>
                         <li id="back"><a href="#" onclick="formSubmit('userAction_list','_self');this.blur();">返回</a>
                         </li>

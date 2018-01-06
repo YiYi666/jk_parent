@@ -1709,6 +1709,35 @@ function toUpdate(url) {
     }
 }
 
+function toSubmit(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+function toCancel(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+function toPrint(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+function toTransportation(url) {
+    if (isOnlyChecked()) {
+        formSubmit(url, '_self');
+    } else {
+        alert("请先选择一项并且只能选择一项，再进行操作！");
+    }
+}
+
 function toDelete(url) {
     if (isChecked()) {
         formSubmit(url, '_self');

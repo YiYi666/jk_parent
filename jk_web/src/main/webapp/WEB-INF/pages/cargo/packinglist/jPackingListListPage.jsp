@@ -14,11 +14,13 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="view"><a href="#" onclick="formSubmit('packingListAction_toview','_self');this.blur();">查看</a></li>
+
+
+<li id="view"><a href="javascript:toView('packingListAction_toview')">查看</a></li>
 <li id="new"><a href="#" onclick="formSubmit('packingListAction_tocreate','_self');this.blur();">新增</a></li>
-<li id="update"><a href="#" onclick="formSubmit('packingListAction_toupdate','_self');this.blur();">修改</a></li>
-<li id="new"><a href="#" onclick="formSubmit('packingListAction_submit','_self');this.blur();">提交</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('packingListAction_delete','_self');this.blur();">删除</a></li>
+<li id="update"><a href="javascript:toUpdate('packingListAction_toupdate')">修改</a></li>
+<li id="submit"><a href="javascript:toSubmit('packingListAction_submit')">提交</a></li>
+<li id="delete"><a href="javascript:toDelete('contractAction_delete')">删除</a></li>
 </ul>
   </div>
 </div>
