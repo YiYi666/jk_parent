@@ -38,7 +38,7 @@
 	        <tr>
 	            <td class="columnTitle">部门名称：</td>
 	            <td class="tableContent">${deptName }</td>
-	        </tr>		
+	        </tr>
 		</table>
 	</div>
  </form>

@@ -11,6 +11,7 @@ import top.greathead.jk.entity.Factory;
 import top.greathead.jk.service.FactoryService;
 import top.greathead.jk.utils.Pagination;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,11 +37,17 @@ public class FactoryServiceImpl implements FactoryService {
 
     @Override
     public void insert(Factory model) {
+        model.setUpdateBy(model.getCreateBy());
+        model.setUpdateTime(model.getUpdateTime());
         factoryDao.save(model);
     }
 
     @Override
     public void update(Factory model) {
+        Factory factory = factoryDao.get(Factory.class, model.getId());
+        model.setCreateBy(factory.getCreateBy());
+        model.setCreateTime(factory.getCreateTime());
+        factoryDao.evict(factory);
         factoryDao.update(model);
     }
 

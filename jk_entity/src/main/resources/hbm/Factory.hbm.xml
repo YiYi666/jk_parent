@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="top.greathead.jk.entity.Factory" table="FACTORY_C" schema="JK">
+    <class name="top.greathead.jk.entity.Factory" table="FACTORY_C" schema="JK" dynamic-update="true" dynamic-insert="true">
         <id name="id" column="FACTORY_ID">
             <generator class="uuid"/>
         </id>
