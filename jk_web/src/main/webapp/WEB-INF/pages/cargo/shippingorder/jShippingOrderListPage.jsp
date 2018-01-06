@@ -65,8 +65,9 @@ ${page.links}
     <td>${o.copyNum}</td>
     <td>${o.checkBy}</td>
     <td>
-        <c:if test="${o.state==0}">草稿</c:if>
-        <c:if test="${o.state==1}"><b><font color="green">已上报</font></b></c:if>
+            ${o.state==0?"草稿":"已上报"}
+       <%-- <c:if test="${o.state==0}">草稿</c:if>
+        <c:if test="${o.state==1}"><b><font color="green">已上报</font></b></c:if>--%>
     </td>
 </c:forEach>
 </tbody>

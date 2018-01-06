@@ -49,7 +49,12 @@ public class ContractProductServiceImpl implements ContractProductService {
 
     private void calculatePrice(ContractProduct contractProduct, Long amount) {
         Contract contract = contractDao.get(Contract.class, contractProduct.getContract().getId());
-        contract.setTotalAmount(contract.getTotalAmount()+amount);
+        Long totalAmount = contract.getTotalAmount();
+        if(totalAmount!=null){
+            contract.setTotalAmount(totalAmount+amount);
+        }else{
+            contract.setTotalAmount(amount);
+        }
         contractDao.update(contract);
     }
 

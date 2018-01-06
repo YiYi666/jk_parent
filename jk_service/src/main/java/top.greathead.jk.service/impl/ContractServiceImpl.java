@@ -58,7 +58,7 @@ public class ContractServiceImpl implements ContractService {
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
         model.setUpdateBy(user.getId());
         model.setUpdateTime(new Date());
-
+        model.setState(oldModel.getState());
         contractDao.evict(oldModel);
         contractDao.update(model);
     }

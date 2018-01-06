@@ -56,6 +56,7 @@ public class PackingListServiceImpl implements PackingListService {
         model.setCreateBy(user.getId());
         model.setCreateDept(user.getDept().getId());
         packingListDao.save(model);
+
     }
 
     @Override

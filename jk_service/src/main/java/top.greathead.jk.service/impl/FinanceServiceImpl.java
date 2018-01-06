@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.greathead.jk.dao.BaseDao;
 import top.greathead.jk.entity.Finance;
+import top.greathead.jk.entity.Invoice;
 import top.greathead.jk.entity.PackingList;
 import top.greathead.jk.entity.User;
 import top.greathead.jk.service.FinanceService;
@@ -23,6 +24,8 @@ public class FinanceServiceImpl implements FinanceService {
     private BaseDao<Finance,String> financeDao;
     @Autowired
     private BaseDao<PackingList,String> packingListDao;
+    @Autowired
+    private BaseDao<Invoice,String> invoiceDao;
 
     @Override
     @Transactional(readOnly = true)
@@ -45,10 +48,14 @@ public class FinanceServiceImpl implements FinanceService {
         model.setPackingList(packingList);
         model.setId(null);
 
+        Invoice invoice =packingList.getInvoice();
+        invoice.setState(2L);
+
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
         model.setCreateBy(user.getId());
         model.setCreateDept(user.getDept().getId());
 
+        invoiceDao.update(invoice);
         financeDao.save(model);
     }
 

@@ -46,6 +46,9 @@ public class ShippingOrderServiceImpl implements ShippingOrderService {
         model.setCreateDept(user.getDept().getId());
 
         PackingList packingList = packingListDao.get(PackingList.class, model.getId());
+        packingList.setState(2L);
+        packingListDao.update(packingList);
+
         model.setPackingList(packingList);
         model.setId(null);
         shippingOrderDao.save(model);

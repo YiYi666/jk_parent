@@ -17,7 +17,9 @@ import top.greathead.jk.web.BaseAction;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author coach tam
@@ -75,6 +77,13 @@ public class ContractAction extends BaseAction implements ModelDriven<Contract>{
     }
 
     public String submit(){
+        Contract contract = contractService.findById(model.getId());
+        Set<ContractProduct> contractProducts = contract.getContractProducts();
+
+        if(contractProducts.isEmpty()){
+           return "rlist";
+        }
+
         Long state = 1L;
         contractService.updateState(model.getId(),state);
         return "rlist";

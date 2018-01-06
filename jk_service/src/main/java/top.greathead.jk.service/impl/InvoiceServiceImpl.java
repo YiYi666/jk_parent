@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import top.greathead.jk.dao.BaseDao;
 import top.greathead.jk.entity.PackingList;
 import top.greathead.jk.entity.Invoice;
+import top.greathead.jk.entity.ShippingOrder;
 import top.greathead.jk.entity.User;
 import top.greathead.jk.service.InvoiceService;
 import top.greathead.jk.utils.Pagination;
@@ -23,6 +24,8 @@ public class InvoiceServiceImpl implements InvoiceService {
     private BaseDao<Invoice,String> invoiceDao;
     @Autowired
     private BaseDao<PackingList,String> packingListDao;
+    @Autowired
+    private BaseDao<ShippingOrder,String> shippingOrderDao;
 
     @Override
     @Transactional(readOnly = true)
@@ -45,7 +48,9 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         packingList.setInvoiceNo(model.getBlNo());
         packingList.setInvoiceDate(model.getCreateTime());
-        packingListDao.update(packingList);
+        ShippingOrder shippingOrder = packingList.getShippingOrder();
+        shippingOrder.setState(2L);
+
 
         model.setPackingList(packingList);
         model.setId(null);
@@ -55,6 +60,8 @@ public class InvoiceServiceImpl implements InvoiceService {
         model.setCreateDept(user.getDept().getId());
 
         invoiceDao.save(model);
+        packingListDao.update(packingList);
+        shippingOrderDao.update(shippingOrder);
     }
 
     @Override

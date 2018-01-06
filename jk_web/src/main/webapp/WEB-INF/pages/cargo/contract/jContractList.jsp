@@ -4,6 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title></title>
+	<script type="application/javascript">
+
+	</script>
 </head>
 
 <body>
@@ -90,9 +93,10 @@
 		<td><fmt:formatDate value="${o.deliveryPeriod}" pattern="yyyy-MM-dd"/></td>
 		<td><fmt:formatDate value="${o.shipTime}" pattern="yyyy-MM-dd"/></td>
 		<td>${o.tradeTerms}</td>
-		<td>${o.totalAmount}</td>
+		<td id= ${status.index+1}>${o.totalAmount}</td>
 		<td><c:if test="${o.state==0}">草稿</c:if>
-		<c:if test="${o.state==1}"><font color="green">已上报</font></c:if></td>
+		<c:if test="${o.state==1}"><font color="green">已上报</font></c:if>
+		<c:if test="${o.state==2}"><font color="green">已上报</font></c:if></td>
 		<td><a href="${ctx }/cargo/contractProductAction_tocreate?contract.id=${o.id}">[货物]</a></td>
 	</tr>
 	</c:forEach>

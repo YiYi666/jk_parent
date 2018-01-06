@@ -32,7 +32,7 @@ public class InvoiceAction extends BaseAction implements ModelDriven<Invoice>{
 
     private Invoice model = new Invoice();
     
-    //TODO 状态问题
+
     public String insert(){
         invoiceService.insert(model);
         return "rlist";
