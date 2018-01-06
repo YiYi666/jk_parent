@@ -1,5 +1,6 @@
 package top.greathead.jk.service.impl;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,8 +8,10 @@ import top.greathead.jk.dao.BaseDao;
 import top.greathead.jk.entity.Contract;
 import top.greathead.jk.entity.ContractProduct;
 import top.greathead.jk.entity.ExtCproduct;
+import top.greathead.jk.entity.User;
 import top.greathead.jk.service.ContractProductService;
 import top.greathead.jk.utils.Pagination;
+import top.greathead.jk.utils.SysConstant;
 
 import java.util.List;
 import java.util.Set;
@@ -46,7 +49,12 @@ public class ContractProductServiceImpl implements ContractProductService {
 
     private void calculatePrice(ContractProduct contractProduct, Long amount) {
         Contract contract = contractDao.get(Contract.class, contractProduct.getContract().getId());
-        contract.setTotalAmount(contract.getTotalAmount()+amount);
+        Long totalAmount = contract.getTotalAmount();
+        if(totalAmount!=null){
+            contract.setTotalAmount(totalAmount+amount);
+        }else{
+            contract.setTotalAmount(amount);
+        }
         contractDao.update(contract);
     }
 

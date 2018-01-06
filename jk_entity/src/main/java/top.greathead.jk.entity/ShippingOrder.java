@@ -27,6 +27,8 @@ public class ShippingOrder {
     private String createDept;
     private Date createTime;
 
+    private PackingList packingList;
+
     public String getId() {
         return id;
     }
@@ -201,5 +203,13 @@ public class ShippingOrder {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public PackingList getPackingList() {
+        return packingList;
+    }
+
+    public void setPackingList(PackingList packingList) {
+        this.packingList = packingList;
     }
 }

@@ -30,6 +30,7 @@ public class LoginAction extends ActionSupport {
 
 				User user = (User) subject.getPrincipal();
 				ServletActionContext.getRequest().getSession().setAttribute(SysConstant.C_USER,user);
+
 				return "success";
 			}catch (Exception e){
 				errorInfo="用户名或密码错误！";

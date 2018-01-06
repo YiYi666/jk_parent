@@ -4,8 +4,9 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import top.greathead.jk.entity.ShippingOrder;
+import top.greathead.jk.entity.Invoice;
 import top.greathead.jk.service.PackingListService;
+import top.greathead.jk.service.InvoiceService;
 import top.greathead.jk.service.ShippingOrderService;
 import top.greathead.jk.utils.Pagination;
 import top.greathead.jk.web.BaseAction;
@@ -16,65 +17,66 @@ import java.util.List;
  * @author coach tam
  * @date 2017/12/20
  */
-@Controller("shippingOrderAction")
+@Controller("invoiceAction")
 @Scope("prototype")
-public class ShippingOrderAction extends BaseAction implements ModelDriven<ShippingOrder>{
+public class InvoiceAction extends BaseAction implements ModelDriven<Invoice>{
 
     private Pagination page = new Pagination();
 
     @Autowired
-    private ShippingOrderService shippingOrderService;
+    private InvoiceService invoiceService;
     @Autowired
-    private PackingListService packingListService;
+    private ShippingOrderService shippingOrderService;
 
-    private List<ShippingOrder> shippingOrderList;
+    private List<Invoice> invoiceList;
 
-    private ShippingOrder model = new ShippingOrder();
+    private Invoice model = new Invoice();
+    
 
     public String insert(){
-        shippingOrderService.insert(model);
+        invoiceService.insert(model);
         return "rlist";
     }
 
     public String list(){
-        page = shippingOrderService.findByPage(page);
-        page.setUrl("shippingOrderAction_list");
+        page = invoiceService.findByPage(page);
+        page.setUrl("invoiceAction_list");
         push(page);
         return "list";
     }
     public String tocreate(){
         Long state = 1L;
-        page = packingListService.findByPage(page,state);
-        page.setUrl("shippingOrderAction_tocreate");
+        page = shippingOrderService.findByPage(page,state);
+        page.setUrl("invoiceAction_tocreate");
         push(page);
         return "tocreate";
     }
     public String toupdate(){
-        shippingOrderList = shippingOrderService.findAll();
-        model = shippingOrderService.findById(model.getId());
-        shippingOrderList.remove(model);
+        invoiceList = invoiceService.findAll();
+        model = invoiceService.findById(model.getId());
+        invoiceList.remove(model);
         push(model);
         return "toupdate";
     }
     public String update(){
-        shippingOrderService.update(model);
+        invoiceService.update(model);
         return "rlist";
     }
 
     public String delete(){
-        shippingOrderService.delete(model.getId().split(", "));
+        invoiceService.delete(model.getId().split(", "));
         return "rlist";
     }
 
     public String toview(){
-        model = shippingOrderService.findById(model.getId());
+        model = invoiceService.findById(model.getId());
         push(model);
         return "toview";
     }
 
     public String submit(){
         Long state = 1L;
-        shippingOrderService.updateState(model.getId(),state);
+        invoiceService.updateState(model.getId(),state);
         return "rlist";
     }
 
@@ -87,12 +89,12 @@ public class ShippingOrderAction extends BaseAction implements ModelDriven<Shipp
         this.page = page;
     }
 
-    public List<ShippingOrder> getShippingOrderList() {
-        return shippingOrderList;
+    public List<Invoice> getInvoiceList() {
+        return invoiceList;
     }
 
     @Override
-    public ShippingOrder getModel() {
+    public Invoice getModel() {
         return model;
     }
 }

@@ -24,7 +24,7 @@ public class Contract extends BaseEntity{
     private String tradeTerms;
     private String printStyle;
     private String remark;
-    private Long state;
+    private Long state;//0-草稿 1-已上报
 
     private Set<ContractProduct> contractProducts;
 
