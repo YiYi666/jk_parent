@@ -31,7 +31,6 @@
   </div> 
   
 
- 
     <div>
 		<table class="commonTable" cellspacing="1">
 			<tr>
@@ -73,8 +72,7 @@
 				<td class="columnTitle">创建日期：</td>
 				<td class="tableContent">
 					<input type="text" style="width:90px;" name="createTime" readonly
-						   value="<fmt:formatDate value='${createTime }' pattern='yyyy-MM-dd' />"
-						   onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});"/>
+						   value="<fmt:formatDate value='${createTime }' pattern='yyyy-MM-dd' />"/>
 				</td>
 			</tr>
 			<tr>
@@ -83,7 +81,7 @@
 				<td class="columnTitle">修改日期：</td>
 				<c:set var="now" value="<%=new java.util.Date()%>" />
 				<td class="tableContent">
-					<input type="text" style="width:90px;" name="updateTime"
+					<input type="text" style="width:90px;" name="updateTime" readonly
 						   value="<fmt:formatDate value='${now }' pattern='yyyy-MM-dd' />"
 						   onclick="WdatePicker({el:this,isShowOthers:true,dateFmt:'yyyy-MM-dd'});"/>
 				</td>
