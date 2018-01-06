@@ -79,11 +79,18 @@ public class ContractAction extends BaseAction implements ModelDriven<Contract>{
     public String submit(){
         Contract contract = contractService.findById(model.getId());
         Set<ContractProduct> contractProducts = contract.getContractProducts();
-
-        if(contractProducts.isEmpty()){
-           return "rlist";
+        PrintWriter writer =null;
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setContentType("text/html;charset=utf-8");
+        try {
+            writer = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
+        if(contractProducts.isEmpty()){
+            writer.write("<script type=\"application/javascript\"> window.location=\"contractAction_list?page.pageNo="+page.getPageNo()+"\"; alert('合同中货物为空！不能提交！') </script>");
+            return null;
+        }
         Long state = 1L;
         contractService.updateState(model.getId(),state);
         return "rlist";
