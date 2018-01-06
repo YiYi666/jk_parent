@@ -31,6 +31,7 @@
         <property name="createBy" column="CREATE_BY"/>
         <property name="createDept" column="CREATE_DEPT"/>
         <property name="createTime" column="CREATE_TIME"/>
+
         <one-to-one name="packingList" class="top.greathead.jk.entity.PackingList" constrained="true"/>
     </class>
 </hibernate-mapping>

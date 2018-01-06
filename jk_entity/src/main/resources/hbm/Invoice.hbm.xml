@@ -16,10 +16,12 @@
 		<property name="scNo" column="SC_NO" type="string"/>
 		<property name="blNo" column="BL_NO" type="string"/>
 		<property name="tradeTerms" column="TRADE_TERMS" type="string"/>
-		<property name="state" column="STATE" type="double"/>
+
+		<property name="state" column="STATE" />
 		<property name="createBy" column="CREATE_BY" type="string"/>
 		<property name="createDept" column="CREATE_DEPT" type="string"/>
 		<property name="createTime" column="CREATE_TIME" type="date"/>
+
 		<one-to-one name="packingList" class="top.greathead.jk.entity.PackingList" constrained="true"/>
 
 	</class>

@@ -14,7 +14,8 @@
             <div id="innerMenubar">
                 <div id="navMenubar">
                     <ul>
-                        <li id="save" value="packingListAction_insert"><a href="#">保存</a></li>
+                      <%--  <li id="save" value="packingListAction_insert"><a href="#">保存</a></li>--%>
+                        <li id="add"><a href="javascript:toAdd('packingListAction_insert')">保存</a></li>
                         <li id="back"><a href="#" onclick="history.go(-1);">返回</a></li>
                     </ul>
                 </div>
@@ -81,7 +82,7 @@
 
             <c:forEach items="${results}" var="o" varStatus="status">
                 <tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'">
-                    <td><input type="checkbox" name="exportIds" value="${o.id}"/></td>
+                    <td><input type="checkbox" name="id" value="${o.id}"/></td>
                     <td>${status.index+1}</td>
                     <td>${o.id}</td>
                     <td align="center">
