@@ -1,5 +1,6 @@
 package top.greathead.jk.service.impl;
 
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,11 +36,13 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     @Transactional(readOnly = true)
+
     public List<Invoice> findAll() {
         return invoiceDao.getListByHQL("from Invoice");
     }
 
     @Override
+
     public void insert(Invoice model) {
         Long state = 0L;
         model.setState(state);
@@ -62,10 +65,12 @@ public class InvoiceServiceImpl implements InvoiceService {
         invoiceDao.save(model);
         packingListDao.update(packingList);
         shippingOrderDao.update(shippingOrder);
+
     }
 
     @Override
     public void update(Invoice model) {
+
         Invoice oldModel = invoiceDao.get(Invoice.class, model.getId());
         model.setCreateTime(oldModel.getCreateTime());
         model.setState(oldModel.getState());

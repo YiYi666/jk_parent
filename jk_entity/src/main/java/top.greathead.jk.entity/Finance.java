@@ -15,10 +15,12 @@ public class Finance extends BaseEntity {
 	private String id;	  	
 	private Date inputDate;			
 	private String inputBy;			
+
 	private Long state;			//0草稿 1已上报
 	private String createBy;			
 	private String createDept;			
 	private Date createTime;
+
 	private PackingList packingList;
 
 	public String getId() {
@@ -45,11 +47,14 @@ public class Finance extends BaseEntity {
 		this.inputBy = inputBy;
 	}
 
+
+
 	public Long getState() {
 		return state;
 	}
 
 	public void setState(Long state) {
+
 		this.state = state;
 	}
 

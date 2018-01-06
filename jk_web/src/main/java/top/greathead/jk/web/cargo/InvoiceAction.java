@@ -91,10 +91,13 @@ public class InvoiceAction extends BaseAction implements ModelDriven<Invoice>{
 
     public List<Invoice> getInvoiceList() {
         return invoiceList;
+
     }
 
     @Override
     public Invoice getModel() {
-        return model;
+
+    return model;
+
     }
 }

@@ -35,11 +35,13 @@ public class FinanceServiceImpl implements FinanceService {
 
     @Override
     @Transactional(readOnly = true)
+
     public List<Finance> findAll() {
         return financeDao.getListByHQL("from Finance");
     }
 
     @Override
+
     public void insert(Finance model) {
         Long state = 0L;
         model.setState(state);
@@ -57,10 +59,12 @@ public class FinanceServiceImpl implements FinanceService {
 
         invoiceDao.update(invoice);
         financeDao.save(model);
+
     }
 
     @Override
     public void update(Finance model) {
+
         Finance oldModel = financeDao.get(Finance.class, model.getId());
         model.setCreateTime(oldModel.getCreateTime());
         model.setState(oldModel.getState());

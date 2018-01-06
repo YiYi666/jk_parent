@@ -17,14 +17,14 @@ public class PackingList implements Serializable{
     private String createBy;
     private String createDept;
     private Date createTime;
+    private Finance finance;
+    private Invoice invoice;
+    private ShippingOrder shippingOrder;
+
 
     private ShippingOrder shippingOrder;
     private Invoice invoice;
     private Finance finance;
-
-
-
-
 
     public String getId() {
         return id;

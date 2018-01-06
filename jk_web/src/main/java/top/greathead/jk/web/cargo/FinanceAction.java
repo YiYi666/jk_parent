@@ -91,6 +91,7 @@ public class FinanceAction extends BaseAction implements ModelDriven<Finance>{
 
     public List<Finance> getFinanceList() {
         return financeList;
+
     }
 
     @Override

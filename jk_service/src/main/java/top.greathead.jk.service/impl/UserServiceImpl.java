@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.greathead.jk.dao.BaseDao;
+import top.greathead.jk.entity.LoginLog;
 import top.greathead.jk.entity.Role;
 import top.greathead.jk.entity.User;
 import top.greathead.jk.service.RoleService;
@@ -35,6 +36,8 @@ public class UserServiceImpl implements UserService {
     private MailUtils mailUtils;
     @Autowired
     private SessionFactory sessionFactory;
+    @Autowired
+    private BaseDao<LoginLog,String> loginLogDao;
 
 
 
@@ -153,5 +156,14 @@ public class UserServiceImpl implements UserService {
         List list = sqlQuery.list();
         session.close();
         return list;
+    }
+
+    @Override
+    public void recordLoginLog(String userName, String ipAddr) {
+        LoginLog loginLog = new LoginLog();
+        loginLog.setLoginName(userName);
+        loginLog.setIpAddress(ipAddr);
+        loginLog.setLoginTime(new Date());
+        loginLogDao.save(loginLog);
     }
 }
