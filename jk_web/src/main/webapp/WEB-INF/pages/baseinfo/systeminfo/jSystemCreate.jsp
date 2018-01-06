@@ -1,7 +1,7 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ include file="../../base.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="../../base.jsp"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title></title>
@@ -16,7 +16,7 @@
 			<div id="innerMenubar">
 				<div id="navMenubar">
 					<ul>
-						<li id="save" value="factoryInfoAction_insert"><a href="#">保存</a></li>
+						<li id="save" value="systemInfoAction_insert"><a href="#">保存</a></li>
 						<li id="back"><a href="#" onclick="history.go(-1);">返回</a></li>
 					</ul>
 				</div>
@@ -28,7 +28,7 @@
 		<div class="textbox-header">
 			<div class="textbox-inner-header">
 				<div class="textbox-title">
-					新增模块节点
+					新建模块
 				</div>
 			</div>
 		</div>
@@ -39,7 +39,7 @@
 			<table class="commonTable" cellspacing="1">
 				<tr>
 					<td class="columnTitle">id：</td>
-					<td class="tableContent"><input type="text" readonly name="id" value=""/></td>
+					<td class="tableContent"><input type="text" readonly value="自动生成"/></td>
 					<td class="columnTitle">模块名：</td>
 					<td class="tableContent"><input type="text" name="name" value=""/></td>
 				</tr>
@@ -52,8 +52,8 @@
 				<tr>
 					<td class="columnTitle">层数：</td>
 					<td class="tableContent"><input type="text" style="width:90px;" name="layerNum" value=""/></td>
-					<td class="columnTitle">链接：</td>
-					<td class="tableContent"><input type="text" style="width:90px;" name="curl" value=""/></td>
+					<td class="columnTitle">权限标识：</td>
+					<td class="tableContent"><input type="text" style="width:90px;" name="cpermission" value=""/></td>
 				</tr>
 				<tr>
 					<td class="columnTitle">引用次数：</td>

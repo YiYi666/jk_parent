@@ -31,8 +31,10 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public void insert(Module model) {
-        Module module = moduleDao.getByHQL("from Module where name = ?",model.getParentName());
-        model.setParentId(module.getId());
+        if(!model.getParentName().isEmpty()) {
+            Module module = moduleDao.getByHQL("from Module where name = ?", model.getParentName());
+            model.setParentId(module.getId());
+        }
         moduleDao.save(model);
     }
 
@@ -42,8 +44,10 @@ public class ModuleServiceImpl implements ModuleService {
         model.setUpdateTime(new Date());
         model.setCreateTime(module.getCreateTime());
         moduleDao.evict(module);
-        Module module2 = moduleDao.getByHQL("from Module where name = ?",model.getParentName());
-        model.setParentId(module2.getId());
+        if(!model.getParentName().isEmpty()) {
+            Module module2 = moduleDao.getByHQL("from Module where name = ?", model.getParentName());
+            model.setParentId(module2.getId());
+        }
         moduleDao.update(model);
     }
 
@@ -58,5 +62,13 @@ public class ModuleServiceImpl implements ModuleService {
         for (String id : ids) {
             moduleDao.deleteById(Module.class,id);
         }
+    }
+
+    @Override
+    public Pagination findByPage(Pagination page, String parentId) {
+        if (parentId==""||parentId==null) {
+            return moduleDao.pageByHql("from Module where parentId is null" ,page.getPageNo(),page.getPageSize());
+        }
+        return moduleDao.pageByHql("from Module where parentId = ?" ,page.getPageNo(),page.getPageSize(),parentId);
     }
 }

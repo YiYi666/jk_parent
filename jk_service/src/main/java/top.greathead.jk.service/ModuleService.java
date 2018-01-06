@@ -17,4 +17,6 @@ public interface ModuleService {
     void update(Module model);
 
     void delete(String[] split);
+
+    Pagination findByPage(Pagination page, String parentId);
 }
