@@ -709,6 +709,7 @@ menu a:hover,menu a:active{
 #navMenubar #back {margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/back.gif") no-repeat;}
 #navMenubar #stop {margin:0 3px;width:45px;height:21px;padding-left:4px;padding-top:4px;background:url("../images/button/iconbg.jpg") no-repeat left 1px;}
 #navMenubar #save {margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/save.gif") no-repeat;}
+#navMenubar #add {margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/save.gif") no-repeat;}
 #navMenubar #submit {margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/save.gif") no-repeat;}
 #navMenubar #view {margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/view.gif") no-repeat;}
 #navMenubar #accept { width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/accept.gif") no-repeat;}

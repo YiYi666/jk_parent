@@ -17,12 +17,11 @@
 
 
 
-
-<li id="view"><a href="javascript:toView('shippingOrderAction_toview')" >查看</a></li>
-<li id="new"><a href="#" onclick="formSubmit('shippingOrderAction_tocreate','_self');this.blur();">新增</a></li>
-<li id="update"><a href="javascript:toUpdate('shippingOrderAction_toupdate')">修改</a></li>
-<li id="submit"><a href="javascript:toSubmit('shippingOrderAction_submit')">提交</a></li>
-<li id="delete"><a href="javascript:toDelete('shippingOrderAction_delete')">删除</a></li>
+<li id="view"><a href="javascript:toView('invoiceAction_toview')">查看</a></li>
+<li id="new"><a href="#" onclick="formSubmit('invoiceAction_tocreate','_self');this.blur();">新增</a></li>
+<li id="update"><a href="javascript:toUpdate('invoiceAction_toupdate')">修改</a></li>
+<li id="submit"><a href="javascript:toSubmit('invoiceAction_submit')">提交</a></li>
+<li id="delete"><a href="javascript:toDelete('invoiceAction_delete')">删除</a></li>
 </ul>
 </div>
 </div>
@@ -43,12 +42,10 @@
 <tr>
     <td class="tableHeader"><input type="checkbox" name="selid" onclick="checkAll('id',this)"></td>
     <td class="tableHeader">序号</td>
-    <td class="tableHeader">委托单号</td>
-    <td class="tableHeader">海运/空运</td>
-    <td class="tableHeader">货主</td>
-    <td class="tableHeader">装期</td>
-    <td class="tableHeader">份数</td>
-    <td class="tableHeader">复核人</td>
+    <td class="tableHeader">发票单号</td>
+    <td class="tableHeader">SC_NO</td>
+    <td class="tableHeader">BL_NO</td>
+    <td class="tableHeader">贸易条款</td>
     <td class="tableHeader">状态</td>
 </tr>
 </thead>
@@ -59,14 +56,12 @@ ${page.links}
     <td><input type="checkbox" name="id" value="${o.id}"/></td>
     <td>${status.index+1}</td>
     <td>${o.id}</td>
-    <td>${o.orderType}</td>
-    <td>${o.shipper}</td>
-    <td><fmt:formatDate value="${o.loadingDate}" pattern="yyyy-MM-dd"/></td>
-    <td>${o.copyNum}</td>
-    <td>${o.checkBy}</td>
+    <td>${o.scNo}</td>
+    <td>${o.blNo}</td>
+    <td>${o.tradeTerms}</td>
     <td>
             ${o.state==0?"草稿":"已上报"}
-       <%-- <c:if test="${o.state==0}">草稿</c:if>
+        <%--<c:if test="${o.state==0}">草稿</c:if>
         <c:if test="${o.state==1}"><b><font color="green">已上报</font></b></c:if>--%>
     </td>
 </c:forEach>

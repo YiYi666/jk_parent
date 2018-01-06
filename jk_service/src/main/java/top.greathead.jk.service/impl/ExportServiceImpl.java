@@ -1,6 +1,7 @@
 package top.greathead.jk.service.impl;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,6 +9,7 @@ import top.greathead.jk.dao.BaseDao;
 import top.greathead.jk.entity.*;
 import top.greathead.jk.service.ExportService;
 import top.greathead.jk.utils.Pagination;
+import top.greathead.jk.utils.SysConstant;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
@@ -45,9 +47,16 @@ public class ExportServiceImpl implements ExportService {
         String[] contractIds =  ids.split(", ");
         model.setId(null);
         Long state = 0L;
+
         model.setState(state);
         model.setInputDate(new Date());
+        model.setCreateTime(new Date());
         model.setContractIds(ids);
+
+        User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+        model.setCreateBy(user.getId());
+        model.setCreateDept(user.getDept().getId());
+
         String customerContract="";
         for(String contractId:contractIds){
             Contract contract = contractDao.get(Contract.class, contractId);
@@ -87,6 +96,8 @@ public class ExportServiceImpl implements ExportService {
             }
         }
         model.setCustomerContract(customerContract);
+
+
         exportDao.save(model);
     }
 
@@ -121,6 +132,9 @@ public class ExportServiceImpl implements ExportService {
         model.setExportProducts(export.getExportProducts());
         exportDao.evict(export);
         model.setState(export.getState());
+        /*User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
+        model.setUpdateBy(user.getId());
+        model.setUpdateTime(new Date());*/
         exportDao.update(model);
     }
 

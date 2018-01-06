@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.greathead.jk.dao.BaseDao;
-import top.greathead.jk.entity.PackingList;
+import top.greathead.jk.entity.Finance;
 import top.greathead.jk.entity.Invoice;
-import top.greathead.jk.entity.ShippingOrder;
+import top.greathead.jk.entity.PackingList;
 import top.greathead.jk.entity.User;
-import top.greathead.jk.service.InvoiceService;
+import top.greathead.jk.service.FinanceService;
 import top.greathead.jk.utils.Pagination;
 import top.greathead.jk.utils.SysConstant;
 
@@ -18,89 +18,84 @@ import java.util.List;
 
 @Service
 @Transactional
-public class InvoiceServiceImpl implements InvoiceService {
+public class FinanceServiceImpl implements FinanceService {
 
     @Autowired
-    private BaseDao<Invoice,String> invoiceDao;
+    private BaseDao<Finance,String> financeDao;
     @Autowired
     private BaseDao<PackingList,String> packingListDao;
     @Autowired
-    private BaseDao<ShippingOrder,String> shippingOrderDao;
+    private BaseDao<Invoice,String> invoiceDao;
 
     @Override
     @Transactional(readOnly = true)
     public Pagination findByPage(Pagination page) {
-        return invoiceDao.pageByHql("from Invoice" ,page.getPageNo(),page.getPageSize());
+        return financeDao.pageByHql("from Finance" ,page.getPageNo(),page.getPageSize());
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Invoice> findAll() {
-        return invoiceDao.getListByHQL("from Invoice");
+    public List<Finance> findAll() {
+        return financeDao.getListByHQL("from Finance");
     }
 
     @Override
-    public void insert(Invoice model) {
+    public void insert(Finance model) {
         Long state = 0L;
         model.setState(state);
         model.setCreateTime(new Date());
         PackingList packingList = packingListDao.get(PackingList.class, model.getId());
-
-        packingList.setInvoiceNo(model.getBlNo());
-        packingList.setInvoiceDate(model.getCreateTime());
-        ShippingOrder shippingOrder = packingList.getShippingOrder();
-        shippingOrder.setState(2L);
-
-
         model.setPackingList(packingList);
         model.setId(null);
+
+        Invoice invoice =packingList.getInvoice();
+        invoice.setState(2L);
 
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
         model.setCreateBy(user.getId());
         model.setCreateDept(user.getDept().getId());
 
-        invoiceDao.save(model);
-        packingListDao.update(packingList);
-        shippingOrderDao.update(shippingOrder);
+        invoiceDao.update(invoice);
+        financeDao.save(model);
     }
 
     @Override
-    public void update(Invoice model) {
-        Invoice oldModel = invoiceDao.get(Invoice.class, model.getId());
+    public void update(Finance model) {
+        Finance oldModel = financeDao.get(Finance.class, model.getId());
         model.setCreateTime(oldModel.getCreateTime());
         model.setState(oldModel.getState());
-        invoiceDao.evict(oldModel);
-        invoiceDao.update(model);
+        financeDao.evict(oldModel);
+        financeDao.update(model);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Invoice findById(String id) {
-        return invoiceDao.get(Invoice.class,id);
+    public Finance findById(String id) {
+        return financeDao.get(Finance.class,id);
     }
 
     @Override
     public void delete(String[] ids) {
         for (String id : ids) {
-            invoiceDao.deleteById(Invoice.class,id);
+            financeDao.deleteById(Finance.class,id);
         }
     }
 
     @Override
     public void updateState(String id, Long state) {
-        Invoice invoice = invoiceDao.get(Invoice.class, id);
-        invoice.setState(state);
+        Finance finance = financeDao.get(Finance.class, id);
+        finance.setState(state);
 
-        invoiceDao.update(invoice);
+        financeDao.update(finance);
     }
 
     @Override
     public Pagination findByPage(Pagination page, Long state) {
-        return invoiceDao.pageByHql("from Invoice where state = ?" ,page.getPageNo(),page.getPageSize() , state);
+        return financeDao.pageByHql("from Finance where state = ?" ,page.getPageNo(),page.getPageSize() , state);
     }
 
     @Override
-    public List<Invoice> findListbyDeliveryPeriod(String now) {
-        return invoiceDao.getListByHQL("from Invoice where state = 2 and to_char(deliveryPeriod,'yyyy-mm-dd')=?", now);
+    public List<Finance> findListbyDeliveryPeriod(String now) {
+        return financeDao.getListByHQL("from Finance where state = 2 and to_char(deliveryPeriod,'yyyy-mm-dd')=?", now);
     }
 }

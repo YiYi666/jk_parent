@@ -14,7 +14,8 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="save" value="shippingOrderAction_insert"><a href="#">保存</a></li>
+<%--<li id="save" value="shippingOrderAction_insert"><a href="#">保存</a></li>--%>
+	<li id="add"><a href="javascript:toInsert('shippingOrderAction_insert')">保存</a></li>
 <li id="back"><a href="#" onclick="history.go(-1);">返回</a></li>
 </ul>
   </div>

@@ -4,8 +4,8 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import top.greathead.jk.entity.Invoice;
-import top.greathead.jk.service.PackingListService;
+import top.greathead.jk.entity.Finance;
+import top.greathead.jk.service.FinanceService;
 import top.greathead.jk.service.InvoiceService;
 import top.greathead.jk.service.ShippingOrderService;
 import top.greathead.jk.utils.Pagination;
@@ -17,66 +17,66 @@ import java.util.List;
  * @author coach tam
  * @date 2017/12/20
  */
-@Controller("invoiceAction")
+@Controller("financeAction")
 @Scope("prototype")
-public class InvoiceAction extends BaseAction implements ModelDriven<Invoice>{
+public class FinanceAction extends BaseAction implements ModelDriven<Finance>{
 
     private Pagination page = new Pagination();
 
     @Autowired
-    private InvoiceService invoiceService;
+    private FinanceService financeService;
     @Autowired
-    private ShippingOrderService shippingOrderService;
+    private InvoiceService invoiceService;
 
-    private List<Invoice> invoiceList;
+    private List<Finance> financeList;
 
-    private Invoice model = new Invoice();
+    private Finance model = new Finance();
     
-
+    //TODO 状态问题
     public String insert(){
-        invoiceService.insert(model);
+        financeService.insert(model);
         return "rlist";
     }
 
     public String list(){
-        page = invoiceService.findByPage(page);
-        page.setUrl("invoiceAction_list");
+        page = financeService.findByPage(page);
+        page.setUrl("financeAction_list");
         push(page);
         return "list";
     }
     public String tocreate(){
         Long state = 1L;
-        page = shippingOrderService.findByPage(page,state);
-        page.setUrl("invoiceAction_tocreate");
+        page = invoiceService.findByPage(page,state);
+        page.setUrl("financeAction_tocreate");
         push(page);
         return "tocreate";
     }
     public String toupdate(){
-        invoiceList = invoiceService.findAll();
-        model = invoiceService.findById(model.getId());
-        invoiceList.remove(model);
+        financeList = financeService.findAll();
+        model = financeService.findById(model.getId());
+        financeList.remove(model);
         push(model);
         return "toupdate";
     }
     public String update(){
-        invoiceService.update(model);
+        financeService.update(model);
         return "rlist";
     }
 
     public String delete(){
-        invoiceService.delete(model.getId().split(", "));
+        financeService.delete(model.getId().split(", "));
         return "rlist";
     }
 
     public String toview(){
-        model = invoiceService.findById(model.getId());
+        model = financeService.findById(model.getId());
         push(model);
         return "toview";
     }
 
     public String submit(){
         Long state = 1L;
-        invoiceService.updateState(model.getId(),state);
+        financeService.updateState(model.getId(),state);
         return "rlist";
     }
 
@@ -89,12 +89,12 @@ public class InvoiceAction extends BaseAction implements ModelDriven<Invoice>{
         this.page = page;
     }
 
-    public List<Invoice> getInvoiceList() {
-        return invoiceList;
+    public List<Finance> getFinanceList() {
+        return financeList;
     }
 
     @Override
-    public Invoice getModel() {
+    public Finance getModel() {
         return model;
     }
 }
