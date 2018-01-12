@@ -54,7 +54,7 @@
 
                     <c:forEach items="${results}" var="o" varStatus="status">
                         <tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'"
-                            align="left">
+                            style="text-align: left">
                             <td><input type="checkbox" name="id" value="${o.id}"/></td>
                             <td>${status.index+1}</td>
                             <td><a href="userAction_toview?id=${o.id}">${o.userName}</a></td>
