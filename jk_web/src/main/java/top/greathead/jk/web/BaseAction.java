@@ -1,5 +1,7 @@
 package top.greathead.jk.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -13,6 +15,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.context.annotation.Scope;
 import top.greathead.jk.entity.User;
 import top.greathead.jk.utils.SysConstant;
+
+import javax.servlet.http.HttpServletResponse;
 
 
 //通过RequestAware, SessionAware, ApplicationAware实行接口获得request,session,application对象，action中就可直接调用
@@ -69,6 +73,21 @@ public  class BaseAction extends ActionSupport implements  RequestAware, Session
 	protected User getUser(){
 		return (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
 	}
+
+	public void printJS(String msg){
+		PrintWriter writer =null;
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			writer = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		writer.write(msg);
+		writer.flush();
+		writer.close();
+	}
+
 
 
 }
