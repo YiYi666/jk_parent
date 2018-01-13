@@ -30,7 +30,14 @@ public class SystemInfoAction extends BaseAction implements ModelDriven<Module> 
     }
 
     public String list(){
-        page = moduleService.findByPage(page,model.getId());
+        String parentId = ServletActionContext.getRequest().getParameter("parentId");
+        if (parentId==null||parentId.isEmpty()) {
+            page = moduleService.findByPage(page,model.getId());
+            ServletActionContext.getRequest().setAttribute("parentId",model.getId());
+        }
+        else {
+            page = moduleService.findByPage(page,parentId);
+        }
         page.setUrl("systemInfoAction_list");
         push(page);
         return "list";

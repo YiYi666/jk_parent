@@ -59,7 +59,9 @@
 <body>
 <form name="icform" method="post">
 
+        <input type="hidden" name="parentId" value="${requestScope.parentId}">
     <div id="menubar">
+
         <div id="middleMenubar">
             <div id="innerMenubar">
                 <div id="navMenubar">
@@ -111,7 +113,9 @@
 
                     <c:forEach items="${results }" var="module" varStatus="st">
                         <tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" align="left">
-                            <td><input type="checkbox" name="id" value="${module.id }" isLeaf="${module.isLeaf}"/></td>
+                            <td>
+                                <input type="checkbox" name="id" value="${module.id }" isLeaf="${module.isLeaf}"/>
+                            </td>
                             <td>${st.count }</td>
                             <td>${module.id }</td>
                             <td>${module.name }</td>

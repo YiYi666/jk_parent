@@ -55,9 +55,11 @@ public class ModuleServiceImpl implements ModuleService {
         model.setCreateTime(module.getCreateTime());
         moduleDao.evict(module);
 
-        if(!model.getParentName().isEmpty()) {
-            Module module2 = moduleDao.getByHQL("from Module where name = ?", model.getParentName());
+        if(!model.getParentId().isEmpty()) {
+            Module module2 = moduleDao.getByHQL("from Module where id = ?", model.getId());
             model.setParentId(module2.getId());
+            model.setParentName(module2.getName());
+            moduleDao.evict(module2);
         }
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
         model.setUpdateBy(user.getId());

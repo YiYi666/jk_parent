@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="../../baselist.jsp"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,7 +8,7 @@
 	<title></title>
 	<link rel="stylesheet" href="${ctx }/components/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css" />
 
-	<script type="text/javascript" src="${ctx }/components/zTree/js/jquery-1.4.4.min.js"></script>
+	<%--<script type="text/javascript" src="${ctx }/components/zTree/js/jquery-1.4.4.min.js"></script>--%>
 	<script type="text/javascript" src="${ctx }/components/zTree/js/jquery.ztree.core-3.5.min.js"></script>
 	<script type="text/javascript" src="${ctx }/components/zTree/js/jquery.ztree.excheck-3.5.min.js"></script>
 	<script type="text/javascript">
@@ -68,7 +69,7 @@
 <div id="innerMenubar">
   <div id="navMenubar">
 <ul>
-<li id="save" value="roleAction_module"><a href="#" <%--onclick="submitCheckedNodes();formSubmit('roleAction_module','_self');this.blur();"--%>>保存</a></li>
+<li id="save" value="roleAction_module"><a href="#">保存</a></li>
 <li id="back"><a href="#" onclick="formSubmit('roleAction_list','_self');this.blur();">返回</a></li>
 </ul>
   </div>
