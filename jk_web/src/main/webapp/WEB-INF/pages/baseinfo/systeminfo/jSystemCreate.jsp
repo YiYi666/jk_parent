@@ -81,7 +81,7 @@
 				</tr>
 				<tr>
 					<td class="columnTitle">修改人：</td>
-					<td class="tableContent"><input type="text" style="width:90px;" name="updateBy" value=""/></td>
+					<td class="tableContent"><input type="text" style="width:90px;" name="updateBy" value="" readonly/></td>
 					<td class="columnTitle">修改日期：</td>
 					<c:set var="now" value="<%=new java.util.Date()%>" />
 					<td class="tableContent">
