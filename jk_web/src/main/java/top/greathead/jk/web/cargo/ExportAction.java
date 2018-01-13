@@ -147,10 +147,13 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
             ExportResult exportResult = JSON.parseObject(exportE, ExportResult.class);
             String remark = exportResult.getRemark();
             //System.out.println(remark);
-            //TODO
+
             if(exportResult.getState().equals("2")){
-                contractService.updateState(export.getId(),2L);
                 exportService.updateState(model,1L);
+                String[] contractIds = export.getContractIds().split(", ");
+                for(String id : contractIds){
+                    contractService.updateState(id,2L);
+                }
             }
         } catch (Exception_Exception e) {
             e.printStackTrace();

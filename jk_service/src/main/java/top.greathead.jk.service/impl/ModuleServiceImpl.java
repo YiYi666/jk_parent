@@ -35,9 +35,11 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public void insert(Module model) {
 
-        if(!model.getParentName().isEmpty()) {
-            Module module = moduleDao.getByHQL("from Module where name = ?", model.getParentName());
+        if(!model.getParentId().isEmpty()) {
+            Module module = moduleDao.getByHQL("from Module where id = ?", model.getParentId());
             model.setParentId(module.getId());
+            model.setParentName(module.getName());
+
         }
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
         model.setCreateBy(user.getId());
