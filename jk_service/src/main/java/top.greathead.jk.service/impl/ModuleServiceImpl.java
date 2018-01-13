@@ -44,7 +44,7 @@ public class ModuleServiceImpl implements ModuleService {
         User user = (User) ServletActionContext.getRequest().getSession().getAttribute(SysConstant.C_USER);
         model.setCreateBy(user.getId());
         model.setCreateDept(user.getDept().getId());
-
+        model.setUpdateBy(user.getId());
         moduleDao.save(model);
     }
 
